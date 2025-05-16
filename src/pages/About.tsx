@@ -124,9 +124,9 @@ const About: React.FC = () => {
           backgroundPosition: 'center'
         }}
       >
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-6 text-5xl font-bold text-white">About VORTEX</h1>
+        <div className="container ">
+          <div className="mx-auto max-w-3xl text-center h-[60vh]">
+            <h1 className="mb-6 text-6xl font-bold text-white pt-[120px]">About VORTEXX</h1>
             <p className="mb-8 text-xl text-gray-300">
               We're a team of passionate technologists dedicated to transforming 
               businesses through innovative digital solutions.
@@ -141,7 +141,7 @@ const About: React.FC = () => {
           <div className="grid gap-8 md:grid-cols-3">
             {/* Vision */}
             <div className="card p-8">
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-primary-600">
+              <div className="mb-6 flex h-18 w-16 items-center justify-center rounded-full bg-primary-100 text-primary-600">
                 <Target className="h-8 w-8" />
               </div>
               <h2 className="mb-4 text-2xl font-bold">Our Vision</h2>

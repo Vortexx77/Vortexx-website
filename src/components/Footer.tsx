@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
               <li className="flex items-center">
                 <Mail className="mr-2 h-5 w-5 text-primary-500" />
                 <a href="mailto:info@vortextech.com" className="hover:text-primary-500">
-                  info@vortextech.com
+                  thevortexxinfo@gmail.com
                 </a>
               </li>
             </ul>
@@ -111,8 +111,8 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-gray-800 py-6">
-          <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
-            <p>&copy; {currentYear} VORTEX Technologies. All rights reserved.</p>
+          <div className=" flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
+            <p>&copy; {currentYear} VORTEXX Technologies. All rights reserved.</p>
             <div className="flex space-x-6">
               <Link to="/privacy" className="text-sm hover:text-primary-500">Privacy Policy</Link>
               <Link to="/terms" className="text-sm hover:text-primary-500">Terms of Service</Link>

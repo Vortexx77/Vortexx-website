@@ -75,7 +75,7 @@ const HeroSection: React.FC = () => {
               We're a full-service technology company helping businesses innovate, 
               grow, and thrive in the digital landscape.
             </p>
-            <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+            <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 ps-[300px]">
               <Link to="/services" className="btn btn-primary">
                 Explore Services
               </Link>

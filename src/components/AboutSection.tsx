@@ -56,9 +56,9 @@ const AboutSection: React.FC = () => {
             <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
               About VORTEX
             </span>
-            <h2 className="mb-6 text-4xl font-bold">Pioneering Tech Solutions Since 2010</h2>
+            <h2 className="mb-6 text-4xl font-bold">Pioneering Tech Solutions Since 2024</h2>
             <p className="mb-6 text-lg text-gray-600">
-              VORTEX was founded with a vision to transform how businesses leverage technology. 
+              VORTEXX was founded with a vision to transform how businesses leverage technology. 
               What started as a small web development team has grown into a comprehensive technology 
               company serving clients across industries worldwide.
             </p>

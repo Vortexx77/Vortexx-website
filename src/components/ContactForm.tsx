@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import axios from 'axios';
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,34 +14,47 @@ const ContactForm: React.FC = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-        service: ''
-      });
+    try {
+      // Replace with your actual API endpoint
+      const response = await axios.post('http://localhost/API/vortexx.php', formData);
       
-      // Reset submission status after 5 seconds
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 5000);
-    }, 1500);
+      if (response.status === 200 || response.status === 201) {
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
+          service: ''
+        });
+        
+        // Reset submission status after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      }
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || 'Failed to send message. Please try again later.');
+      } else {
+        setError('An unexpected error occurred. Please try again later.');
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -123,6 +137,11 @@ const ContactForm: React.FC = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="rounded-lg bg-red-100 p-4 text-red-700">
+                    {error}
+                  </div>
+                )}
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-700">
