@@ -1,10 +1,230 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, CheckCircle, Target, Compass, Flag } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About: React.FC = () => {
+  const heroRef = useRef(null);
+  const visionMissionRef = useRef(null);
+  const strategicGoalsRef = useRef(null);
+  const storyRef = useRef(null);
+  const timelineRef = useRef(null);
+  const valuesRef = useRef(null);
+  const teamRef = useRef(null);
+  const ctaRef = useRef(null);
+
   useEffect(() => {
     document.title = 'About Us | VORTEX';
+
+    // Hero section animations
+    const heroTimeline = gsap.timeline();
+    heroTimeline
+      .fromTo('.hero-title', 
+        { x: -300, opacity: 0 }, 
+        { x: 0, 
+        opacity: 1,
+        duration: 1.2, 
+        delay: 1.2,
+        ease: 'power3.out', }
+      )
+      .fromTo('.hero-subtitle', 
+        { x: 300, opacity: 0 }, 
+        { x: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: -0.8 }
+      );
+
+    // Vision, Mission, Goals cards
+    gsap.fromTo('.vision-mission-card', 
+      { x: -100, opacity: 0, scale: 0.8 }, 
+      { 
+        x: 0, 
+        opacity: 1, 
+        scale: 1, 
+        duration: 1, 
+        ease: 'back.out(1.7)',
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: visionMissionRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
+          scrub: true
+        }
+      }
+    );
+
+    // Strategic Goals
+    gsap.fromTo('.strategic-goal-card', 
+      { y: 60, opacity: 0, rotationX: 30 }, 
+      { 
+        y: 0, 
+        opacity: 1, 
+        rotationX: 0,
+        duration: 0.8, 
+        ease: 'power2.out',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: strategicGoalsRef.current,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+          scrub: true
+        }
+      }
+    );
+
+    // Story section
+    gsap.fromTo('.story-content', 
+      { x: -250, opacity: 0 }, 
+      { 
+        x: 0, 
+        opacity: 1, 
+        duration: 1.2, 
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: storyRef.current,
+          start: 'top 70%',
+          toggleActions: 'play none none reverse',
+          scrub: true
+        }
+      }
+    );
+
+    gsap.fromTo('.story-image', 
+      { x: 150, opacity: 0, scale: 0.8 }, 
+      { 
+        x: 0, 
+        opacity: 1, 
+        scale: 1,
+        duration: 1.2, 
+        ease: 'elastic.out(1, 0.8)',
+        scrollTrigger: {
+          trigger: storyRef.current,
+          start: 'top 70%',
+          toggleActions: 'play none none reverse',
+          scrub: true
+        }
+      }
+    );
+
+    // Timeline items
+    gsap.fromTo('.timeline-item', 
+      { 
+        x: (index) => index % 2 === 0 ? -200 : 200,
+        opacity: 0,
+        scale: 0.7
+      }, 
+      { 
+        x: 0, 
+        opacity: 1, 
+        scale: 1,
+        duration: 1, 
+        ease: 'power2.out',
+        stagger: 0.3,
+        scrollTrigger: {
+          trigger: timelineRef.current,
+          start: 'top 60%',
+          toggleActions: 'play none none reverse',
+          scrub: true
+        }
+      }
+    );
+
+    // Values cards
+    gsap.fromTo('.value-card', 
+      { y: 100, opacity: 0, rotationY: 45 }, 
+      { 
+        y: 0, 
+        opacity: 1, 
+        rotationY: 0,
+        duration: 1, 
+        ease: 'power3.out',
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: valuesRef.current,
+          start: 'top 70%',
+          toggleActions: 'play none none reverse',
+          scrub: true
+        }
+      }
+    );
+
+    // Team cards
+    gsap.fromTo('.team-card', 
+      { y: 120, opacity: 0, scale: 0.9 }, 
+      { 
+        y: 0, 
+        opacity: 1, 
+        scale: 1,
+        duration: 0.8, 
+        ease: 'back.out(1.5)',
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: teamRef.current,
+          start: 'top 75%',
+          end: 'top 40%',
+          toggleActions: 'play none none reverse',
+          scrub: true
+        }
+      }
+    );
+
+    // CTA section
+    gsap.fromTo('.cta-content', 
+      { x: -100, opacity: 0 }, 
+      { 
+        x: 0, 
+        opacity: 1, 
+        duration: 1, 
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: ctaRef.current,
+          start: 'top 80%',
+          end: 'top 40%',
+          toggleActions: 'play none none reverse',
+          scrub: true
+        }
+      }
+    );
+
+    gsap.fromTo('.cta-image', 
+      { x: 100, opacity: 0, rotationY: 15 }, 
+      { 
+        x: 0, 
+        opacity: 1, 
+        rotationY: 0,
+        duration: 1.2, 
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: ctaRef.current,
+          start: 'top 80%',
+          end: 'top 40%',
+          toggleActions: 'play none none reverse',
+          scrub: true
+        }
+      }
+    );
+
+    // Section headers animation
+    gsap.fromTo('.section-header', 
+      { y: 50, opacity: 0 }, 
+      { 
+        y: 0, 
+        opacity: 1, 
+        duration: 0.8, 
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.section-header',
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+          scrub: true
+        }
+      }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
   const teamMembers = [
@@ -117,17 +337,18 @@ const About: React.FC = () => {
     <div className="pt-20">
       {/* Hero section */}
       <section 
-        className="bg-primary-900 py-20 text-white"
+        ref={heroRef}
+        className="bg-primary-900 py-20 text-white overflow-hidden"
         style={{
           backgroundImage: 'linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)), url(https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       >
-        <div className="container ">
+        <div className="container">
           <div className="mx-auto max-w-3xl text-center h-[60vh]">
-            <h1 className="mb-6 text-6xl font-bold text-white pt-[120px]">About VORTEXX</h1>
-            <p className="mb-8 text-xl text-gray-300">
+            <h1 className="hero-title mb-6 text-6xl font-bold text-white pt-[120px]">About VORTEXX</h1>
+            <p className="hero-subtitle mb-8 text-xl text-gray-300">
               We're a team of passionate technologists dedicated to transforming 
               businesses through innovative digital solutions.
             </p>
@@ -136,11 +357,11 @@ const About: React.FC = () => {
       </section>
 
       {/* Vision, Mission, Goals section */}
-      <section className="section bg-gray-50">
+      <section ref={visionMissionRef} className="section bg-gray-50">
         <div className="container">
           <div className="grid gap-8 md:grid-cols-3">
             {/* Vision */}
-            <div className="card p-8">
+            <div className="vision-mission-card card p-8">
               <div className="mb-6 flex h-18 w-16 items-center justify-center rounded-full bg-primary-100 text-primary-600">
                 <Target className="h-8 w-8" />
               </div>
@@ -153,7 +374,7 @@ const About: React.FC = () => {
             </div>
 
             {/* Mission */}
-            <div className="card p-8">
+            <div className="vision-mission-card card p-8">
               <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-primary-600">
                 <Compass className="h-8 w-8" />
               </div>
@@ -166,7 +387,7 @@ const About: React.FC = () => {
             </div>
 
             {/* Goals */}
-            <div className="card p-8">
+            <div className="vision-mission-card card p-8">
               <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-primary-600">
                 <Flag className="h-8 w-8" />
               </div>
@@ -182,9 +403,9 @@ const About: React.FC = () => {
       </section>
 
       {/* Strategic Goals section */}
-      <section className="section">
+      <section ref={strategicGoalsRef} className="section">
         <div className="container">
-          <div className="mb-12 text-center">
+          <div className="section-header mb-12 text-center">
             <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
               Strategic Goals
             </span>
@@ -197,7 +418,7 @@ const About: React.FC = () => {
 
           <div className="grid gap-6 md:grid-cols-2">
             {strategicGoals.map((goal, index) => (
-              <div key={index} className="card p-6 hover:shadow-lg">
+              <div key={index} className="strategic-goal-card card p-6 hover:shadow-lg">
                 <h3 className="mb-3 text-xl font-bold">{goal.title}</h3>
                 <p className="text-gray-600">{goal.description}</p>
               </div>
@@ -207,10 +428,10 @@ const About: React.FC = () => {
       </section>
       
       {/* Our story section */}
-      <section className="section">
+      <section ref={storyRef} className="section">
         <div className="container">
           <div className="grid gap-12 md:grid-cols-2">
-            <div>
+            <div className="story-content">
               <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
                 Our Story
               </span>
@@ -232,7 +453,7 @@ const About: React.FC = () => {
               </p>
             </div>
             
-            <div className="relative">
+            <div className="story-image relative">
               <img 
                 src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
                 alt="VORTEX Team" 
@@ -253,8 +474,8 @@ const About: React.FC = () => {
           </div>
           
           {/* Timeline */}
-          <div className="mt-20">
-            <div className="mb-12 text-center">
+          <div ref={timelineRef} className="mt-20">
+            <div className="section-header mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold">Our Journey</h2>
               <p className="mx-auto max-w-2xl text-lg text-gray-600">
                 A timeline of key milestones in our growth and evolution
@@ -269,7 +490,7 @@ const About: React.FC = () => {
                 {milestones.map((milestone, index) => (
                   <div 
                     key={index}
-                    className={`relative flex ${
+                    className={`timeline-item relative flex ${
                       index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
                     }`}
                   >
@@ -302,9 +523,9 @@ const About: React.FC = () => {
       </section>
       
       {/* Our values section */}
-      <section id="values" className="section bg-gray-50">
+      <section ref={valuesRef} id="values" className="section bg-gray-50">
         <div className="container">
-          <div className="mb-12 text-center">
+          <div className="section-header mb-12 text-center">
             <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
               Our Values
             </span>
@@ -317,7 +538,7 @@ const About: React.FC = () => {
           
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {values.map((value, index) => (
-              <div key={index} className="card p-6 hover:shadow-xl">
+              <div key={index} className="value-card card p-6 hover:shadow-xl">
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100 text-primary-600">
                   <CheckCircle className="h-6 w-6" />
                 </div>
@@ -330,9 +551,9 @@ const About: React.FC = () => {
       </section>
       
       {/* Team section */}
-      <section id="team" className="section">
+      <section ref={teamRef} id="team" className="section">
         <div className="container">
-          <div className="mb-12 text-center">
+          <div className="section-header mb-12 text-center">
             <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
               Our Team
             </span>
@@ -346,7 +567,7 @@ const About: React.FC = () => {
             {teamMembers.map((member, index) => (
               <div 
                 key={index}
-                className="card group overflow-hidden"
+                className="team-card card group overflow-hidden"
               >
                 <div className="h-64 overflow-hidden">
                   <img 
@@ -377,10 +598,10 @@ const About: React.FC = () => {
       </section>
       
       {/* CTA section */}
-      <section id="careers" className="section bg-primary-900 text-white">
+      <section ref={ctaRef} id="careers" className="section bg-primary-900 text-white">
         <div className="container">
           <div className="grid gap-8 md:grid-cols-2">
-            <div>
+            <div className="cta-content">
               <h2 className="mb-4 text-4xl font-bold">Join Our Team</h2>
               <p className="mb-6 text-lg text-gray-300">
                 We're always looking for talented individuals to join our growing team. 
@@ -412,7 +633,7 @@ const About: React.FC = () => {
               </div>
             </div>
             
-            <div className="flex items-center justify-center">
+            <div className="cta-image flex items-center justify-center">
               <img 
                 src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
                 alt="Team collaboration" 

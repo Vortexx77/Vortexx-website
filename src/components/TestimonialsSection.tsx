@@ -28,6 +28,17 @@ const TestimonialsSection: React.FC = () => {
     }
   ];
   
+  // Auto-slide functionality
+  useEffect(() => {
+    const autoSlide = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(autoSlide);
+  }, [testimonials.length]);
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -62,9 +73,9 @@ const TestimonialsSection: React.FC = () => {
 
   return (
     <section 
-      className="section py-20"
+      className="section py-20 bg-gray"
       style={{
-        background: 'linear-gradient(to right, #f8fafc, #eff6ff, #f8fafc)'
+        background: 'linear-gradient(120deg, #0f172a 0%, #1e293b 100%)'
       }}
     >
       <div className="container">
@@ -72,8 +83,8 @@ const TestimonialsSection: React.FC = () => {
           <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
             Testimonials
           </span>
-          <h2 className="mb-4 text-4xl font-bold">What Our Clients Say</h2>
-          <p className="mx-auto max-w-2xl text-lg text-gray-600">
+          <h2 className="mb-4 text-4xl font-bold text-white">What Our Clients Say</h2>
+          <p className="mx-auto max-w-2xl text-lg text-gray-300">
             Don't just take our word for it. Here's what our clients have to say about 
             their experience working with VORTEX.
           </p>
@@ -128,9 +139,23 @@ const TestimonialsSection: React.FC = () => {
               <ChevronRight className="h-5 w-5" />
             </button>
           </div>
+          
+          {/* Slide indicators */}
+          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-2 w-2 rounded-full transition-colors ${
+                  index === currentIndex ? 'bg-primary-600' : 'bg-gray-300'
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
         
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        {/* <div className="mt-16 grid gap-6 md:grid-cols-3">
           {[
             { label: 'Client Retention Rate', value: '95%' },
             { label: 'Projects Delivered On Time', value: '98%' },
@@ -145,7 +170,7 @@ const TestimonialsSection: React.FC = () => {
               <div className="mt-2 text-gray-600">{stat.label}</div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

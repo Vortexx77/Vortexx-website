@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Code, PenTool, LineChart, Server } from 'lucide-react';
+import gsap from "gsap";
 
 const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const digitalRef = useRef<HTMLSpanElement>(null);
+  const exploreBtnRef = useRef<HTMLAnchorElement>(null);
+  const contactBtnRef = useRef<HTMLAnchorElement>(null);  
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const subheadlineRef = useRef<HTMLParagraphElement>(null);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -19,10 +25,37 @@ const HeroSection: React.FC = () => {
     
     const fadeElements = document.querySelectorAll('.fade-in');
     fadeElements.forEach((el) => observer.observe(el));
-    
+      
+      gsap.fromTo(
+    [headlineRef.current, subheadlineRef.current, exploreBtnRef.current, contactBtnRef.current],
+    { x: -200, opacity: 0 },
+    {
+      x: 0,
+      opacity: 1,
+      stagger: 0.15,
+      duration: 1,
+      ease: "power3.out"
+    }
+  );
+
+      if (digitalRef.current) {
+      gsap.to(digitalRef.current, {
+        backgroundPosition: "200% 0",
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+        backgroundImage: "linear-gradient(90deg, #3b82f6, #a21caf, #059669, #3b82f6)",
+        backgroundSize: "200% 100%",
+      });
+    }
+
     return () => {
       fadeElements.forEach((el) => observer.unobserve(el));
     };
+
+    
+
   }, []);
 
   const services = [
@@ -68,18 +101,32 @@ const HeroSection: React.FC = () => {
             <span className="mb-6 inline-block rounded-full bg-primary-600/20 px-4 py-1 text-sm font-medium text-primary-400">
               Innovative Tech Solutions
             </span>
-            <h1 className="mb-6 text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
-              Transforming Ideas Into <span className="text-primary-500">Digital Reality</span>
+            <h1 
+            ref={headlineRef}
+            className="mb-6 text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
+              Transforming Ideas Into <br />
+              <span 
+              ref = {digitalRef}
+              className="inline-block bg-gradient-to-r from-primary-400 via-fuchsia-500 to-primary-600 bg-clip-text text-transparent">
+                Digital Reality
+                </span>
             </h1>
-            <p className="mx-auto mb-10 max-w-2xl text-xl text-gray-300">
+            <p 
+            ref={subheadlineRef}
+            className="mx-auto mb-10 max-w-2xl text-xl text-gray-300">
               We're a full-service technology company helping businesses innovate, 
               grow, and thrive in the digital landscape.
             </p>
-            <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 ps-[300px]">
-              <Link to="/services" className="btn btn-primary">
-                Explore Services
+            <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 lg:ps-[250px]">
+              <Link 
+              ref ={exploreBtnRef}
+              to="/services" 
+              className="btn btn-primary">Explore Services
               </Link>
-              <Link to="/contact" className="btn bg-white text-primary-900 hover:bg-gray-100">
+              <Link 
+              to="/contact"
+              ref={contactBtnRef}
+              className="btn bg-white text-primary-900 hover:bg-gray-100">
                 Get in Touch
               </Link>
             </div>
@@ -87,11 +134,11 @@ const HeroSection: React.FC = () => {
         </div>
         
         {/* Service highlight boxes */}
-        <div className="grid gap-6 pb-20 md:grid-cols-2 lg:grid-cols-4">
+        <div className="hidden md:grid gap-6 pb-20 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="fade-in card group cursor-pointer bg-white/10 p-6 backdrop-blur-lg transition-all hover:bg-white/20"
+              className="card group cursor-pointer bg-white/10 p-6 backdrop-blur-lg transition-all hover:bg-white/20 flex flex-col items-center"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="mb-4 rounded-lg bg-primary-600/20 p-3 text-primary-400 transition-colors group-hover:bg-primary-600/30 group-hover:text-primary-300">
@@ -105,6 +152,21 @@ const HeroSection: React.FC = () => {
               >
                 Learn more <ChevronRight className="ml-1 h-4 w-4" />
               </Link>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile: icon and small title, horizontal */}
+        <div className="flex md:hidden justify-center gap-3 pb-2 mt-[-50px]">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center bg-white/10 rounded-xl p-3"
+            >
+              <div className="rounded-lg bg-primary-600/20 p-6 text-primary-400 mb-2">
+                {service.icon}
+              </div>
+              <span className="text-base font-semibold text-white text-center">{service.name}</span>
             </div>
           ))}
         </div>

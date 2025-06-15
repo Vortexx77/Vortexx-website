@@ -1,8 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Code, Server, PenTool, LineChart, HardDrive, Globe, File as Mobile, ShoppingCart, Database, Shield, Cloud, BarChart } from 'lucide-react';
+import { Code, Server, PenTool, LineChart, HardDrive, ArrowRight } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ServicesSection: React.FC = () => {
+  const cardsRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -15,6 +20,25 @@ const ServicesSection: React.FC = () => {
       { threshold: 0.1 }
     );
     
+     if (cardsRef.current) {
+    gsap.utils.toArray<HTMLElement>('.fade-in').forEach((card, i) => {
+      gsap.fromTo(
+        card,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            end: 'top 40%',
+            scrub: true,
+            toggleActions: 'play reverse play reverse',
+          },
+        }
+      );
+    });
+  }
+
     const fadeElements = document.querySelectorAll('.fade-in');
     fadeElements.forEach((el) => observer.observe(el));
     
@@ -27,78 +51,45 @@ const ServicesSection: React.FC = () => {
     {
       id: 'web-design',
       title: 'Web Design & Development',
-      description: 'We create stunning, user-focused websites that engage visitors and drive conversions.',
-      icon: <Code className="h-12 w-12" />,
-      features: [
-        'Responsive website design',
-        'E-commerce solutions',
-        'Web applications',
-        'User experience optimization'
-      ],
-      image: 'https://images.pexels.com/photos/196646/pexels-photo-196646.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      description: 'Stunning, user-focused websites that engage visitors and drive conversions.',
+      icon: <Code className="h-8 w-8" />,
+      href: '/services#web-design'
     },
     {
       id: 'systems-development',
       title: 'Systems Development',
-      description: 'Custom software solutions designed to streamline your operations and boost productivity.',
-      icon: <Server className="h-12 w-12" />,
-      features: [
-        'Custom software development',
-        'Enterprise solutions',
-        'API integration',
-        'Legacy system modernization'
-      ],
-      image: 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      description: 'Custom software solutions designed to streamline operations and boost productivity.',
+      icon: <Server className="h-8 w-8" />,
+      href: '/services#systems-development'
     },
     {
       id: 'graphics-design',
       title: 'Graphics Design',
       description: 'Eye-catching visuals that communicate your brand message and captivate your audience.',
-      icon: <PenTool className="h-12 w-12" />,
-      features: [
-        'Brand identity design',
-        'Marketing materials',
-        'UI/UX design',
-        'Motion graphics'
-      ],
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      icon: <PenTool className="h-8 w-8" />,
+      href: '/services#graphics-design'
     },
     {
       id: 'digital-marketing',
       title: 'Digital Marketing',
-      description: 'Data-driven marketing strategies that increase visibility, engagement, and conversion.',
-      icon: <LineChart className="h-12 w-12" />,
-      features: [
-        'SEO optimization',
-        'Content marketing',
-        'Social media management',
-        'PPC advertising'
-      ],
-      image: 'https://images.pexels.com/photos/905163/pexels-photo-905163.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      description: 'Data-driven marketing strategies that increase visibility and conversion.',
+      icon: <LineChart className="h-8 w-8" />,
+      href: '/services#digital-marketing'
     },
     {
       id: 'infrastructure',
       title: 'Infrastructure Management',
-      description: 'Reliable IT infrastructure solutions that ensure security, scalability, and performance.',
-      icon: <HardDrive className="h-12 w-12" />,
-      features: [
-        'Cloud infrastructure',
-        'Network management',
-        'Cybersecurity solutions',
-        'IT maintenance & support'
-      ],
-      image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      description: 'Reliable IT infrastructure solutions that ensure security and performance.',
+      icon: <HardDrive className="h-8 w-8" />,
+      href: '/services#infrastructure'
+    },
+    {
+    id: 'ai-agents',
+    title: 'AI Agents',
+    description: 'Intelligent AI-powered agents to automate tasks and enhance customer experience.',
+    icon: <LineChart className="h-8 w-8" />, // You can use a more AI-specific icon if you have one
+    href: '/services#ai-agents'
     }
-  ];
-  
-  const additionalCapabilities = [
-    { icon: <Globe className="h-6 w-6 text-white" />, name: 'Website Hosting' },
-    { icon: <Mobile className="h-6 w-6 text-white" />, name: 'Mobile App Development' },
-    { icon: <ShoppingCart className="h-6 w-6 text-white" />, name: 'E-commerce Solutions' },
-    { icon: <Database className="h-6 w-6 text-white" />, name: 'Database Management' },
-    { icon: <Shield className="h-6 w-6 text-white" />, name: 'Cybersecurity' },
-    { icon: <Cloud className="h-6 w-6 text-white" />, name: 'Cloud Solutions' },
-    { icon: <BarChart className="h-6 w-6 text-white" />, name: 'Data Analytics' }
   ];
 
   return (
@@ -115,74 +106,32 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
         
-        <div className="mb-20 space-y-20">
-          {services.map((service, index) => (
+        <div ref={cardsRef} className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => (
             <div 
               key={service.id}
-              id={service.id}
-              className={`fade-in flex flex-col gap-8 ${
-                index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'
-              }`}
+              className="fade-in group card p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
-              <div className="lg:w-1/2">
-                <div className="overflow-hidden rounded-xl">
-                  <img 
-                    src={service.image} 
-                    alt={service.title} 
-                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                </div>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100 text-primary-600 transition-colors group-hover:bg-primary-600 group-hover:text-white">
+                {service.icon}
               </div>
-              <div className="flex flex-col justify-center lg:w-1/2">
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-primary-100 text-primary-600">
-                  {service.icon}
-                </div>
-                <h3 className="mb-4 text-3xl font-bold">{service.title}</h3>
-                <p className="mb-6 text-lg text-gray-600">{service.description}</p>
-                <ul className="mb-8 space-y-3">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="mr-2 mt-1 text-primary-600">✓</span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link to="/contact" className="btn btn-primary self-start">
-                  Get Started
-                </Link>
-              </div>
+              <h3 className="mb-3 text-xl font-bold">{service.title}</h3>
+              <p className="mb-4 text-gray-600">{service.description}</p>
+              <Link 
+                to={service.href} 
+                className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors"
+              >
+                Learn More 
+                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           ))}
         </div>
         
-        <div className="rounded-xl bg-primary-900 p-8 text-white md:p-12">
-          <div className="text-center">
-            <h3 className="mb-6 text-3xl font-bold">Additional Capabilities</h3>
-            <p className="mx-auto mb-10 max-w-2xl text-primary-100">
-              Beyond our core services, we offer specialized solutions to address 
-              your specific technology needs.
-            </p>
-          </div>
-          
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {additionalCapabilities.map((capability, index) => (
-              <div 
-                key={index}
-                className="fade-in flex flex-col items-center rounded-lg bg-primary-800/50 p-6 text-center"
-              >
-                <div className="mb-4 rounded-full bg-primary-700 p-3 text-primary-300">
-                  {capability.icon}
-                </div>
-                <h4 className="text-lg font-semibold text-white">{capability.name}</h4>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-10 text-center">
-            <Link to="/contact" className="btn bg-white text-primary-900 hover:bg-gray-100">
-              Discuss Your Project
-            </Link>
-          </div>
+        <div className="mt-12 text-center">
+          <Link to="/services" className="btn btn-primary">
+            View All Services
+          </Link>
         </div>
       </div>
     </section>

@@ -1,24 +1,73 @@
 import React, { useEffect } from 'react';
 import ContactForm from '../components/ContactForm';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact: React.FC = () => {
   useEffect(() => {
     document.title = 'Contact Us | VORTEX';
+
+    // Hero Section Animation (Slide in from top)
+    gsap.fromTo(
+      '.hero-content',
+      {
+        y: 80,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+      }
+    );
+
+    // FAQ Cards Staggered Slide-In with Alternating Directions
+    const cards = gsap.utils.toArray('.faq-card') as HTMLElement[];
+
+    cards.forEach((card, index) => {
+  const direction = index % 2 === 0 ? -100 : 100; // alternate left/right
+
+  gsap.fromTo(
+    card,
+    {
+      x: direction,
+      opacity: 0,
+    },
+    {
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+      x: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power3.out',
+      delay: index * 0.1,
+    }
+  );
+});
+
   }, []);
 
   return (
     <div className="pt-20">
       {/* Hero section */}
-      <section 
+      <section
         className="bg-primary-900 py-20 text-white"
         style={{
-          backgroundImage: 'linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)), url(https://images.pexels.com/photos/5119214/pexels-photo-5119214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',
+          backgroundImage:
+            'linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)), url(https://images.pexels.com/photos/5119214/pexels-photo-5119214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundPosition: 'center',
         }}
       >
         <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl text-center hero-content">
             <h1 className="mb-6 text-5xl font-bold text-white">Contact Us</h1>
             <p className="mb-8 text-xl text-gray-300">
               Have a question or ready to start a project? Get in touch with our team today.
@@ -26,10 +75,12 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Contact form section */}
-      <ContactForm />
-      
+      <section className="contact-form">
+        <ContactForm />
+      </section>
+
       {/* FAQ section */}
       <section className="section">
         <div className="container">
@@ -42,40 +93,56 @@ const Contact: React.FC = () => {
               Find answers to common questions about our services and process.
             </p>
           </div>
-          
+
           <div className="mx-auto max-w-3xl space-y-6">
             {[
               {
                 question: 'What types of businesses do you work with?',
-                answer: 'We work with businesses of all sizes across various industries, from startups to enterprise-level organizations. Our solutions are tailored to meet the specific needs and goals of each client.'
+                answer:
+                  'We work with businesses of all sizes across various industries, from startups to enterprise-level organizations. Our solutions are tailored to meet the specific needs and goals of each client.',
               },
               {
                 question: 'How long does a typical project take?',
-                answer: 'Project timelines vary depending on the scope and complexity. A simple website might take 4-6 weeks, while a complex system could take several months. We provide detailed timelines during our planning phase.'
+                answer:
+                  'Project timelines vary depending on the scope and complexity. A simple website might take 4-6 weeks, while a complex system could take several months. We provide detailed timelines during our planning phase.',
               },
               {
                 question: 'Do you offer ongoing support and maintenance?',
-                answer: 'Yes, we offer various support and maintenance packages to ensure your digital assets continue to perform optimally. Our team is available for updates, troubleshooting, and ongoing enhancements.'
+                answer:
+                  'Yes, we offer various support and maintenance packages to ensure your digital assets continue to perform optimally. Our team is available for updates, troubleshooting, and ongoing enhancements.',
               },
               {
                 question: 'How do you handle project pricing?',
-                answer: 'We provide customized quotes based on project requirements. Depending on the project, we may use fixed-price models, time and materials pricing, or retainer agreements. We\'re transparent about costs from the beginning.'
+                answer:
+                  'We provide customized quotes based on project requirements. Depending on the project, we may use fixed-price models, time and materials pricing, or retainer agreements. We\'re transparent about costs from the beginning.',
               },
               {
                 question: 'Can you work with our existing systems and technology?',
-                answer: 'Absolutely. We specialize in both building new solutions and integrating with or enhancing existing systems. Our team has experience working with a wide range of technologies and platforms.'
-              }
+                answer:
+                  'Absolutely. We specialize in both building new solutions and integrating with or enhancing existing systems. Our team has experience working with a wide range of technologies and platforms.',
+              },
             ].map((item, index) => (
-              <div 
+              <div
                 key={index}
-                className="card overflow-hidden rounded-lg border border-gray-200"
+                className="card overflow-hidden rounded-lg border border-gray-200 faq-card"
               >
                 <details className="group">
                   <summary className="flex cursor-pointer items-center justify-between bg-white p-6 font-semibold">
                     {item.question}
                     <div className="ml-2 text-primary-600 transition-transform duration-300 group-open:rotate-180">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </div>
                   </summary>
