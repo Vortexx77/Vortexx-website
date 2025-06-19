@@ -409,7 +409,7 @@ const About: React.FC = () => {
             <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
               Strategic Goals
             </span>
-            <h2 className="mb-4 text-4xl font-bold">Building for the Future</h2>
+            <h2 className="mb-4 text-4xl font-bold">We Build for the Future</h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600">
               Our strategic objectives guide our growth and development as we work 
               to create lasting impact in the technology industry.
