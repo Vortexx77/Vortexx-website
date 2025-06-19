@@ -176,7 +176,7 @@ const AboutSection: React.FC = () => {
                   <h3 className="mb-2 text-2xl font-bold text-white ">Our Team</h3>
                   <p className="text-primary-100">
                     A diverse group of passionate tech experts dedicated to your success
-                    VORTEX has helped over 100 clients achieve their digital goals. Our team combines years of experience with a passion for innovation, ensuring every project is a success. We believe in 
+                    VORTEX has helped many clients achieve their digital goals. Our team combines years of experience with a passion for innovation, ensuring every project is a success. We believe in 
                     building lasting partnerships and delivering measurable results.
                   </p>
                 </div>
