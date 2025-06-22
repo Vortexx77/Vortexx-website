@@ -55,7 +55,7 @@ const Header: React.FC = () => {
           isHome
             ? isScrolled
               ? 'backdrop-blur-md bg-white/60 shadow-lg border-b border-white/30 ring-1 ring-fuchsia-300/20'
-              : 'bg-transparent border-b border-transparent'
+              : 'bg-transparent'
             : 'backdrop-blur-md bg-white/80 shadow-lg border-b border-white/30'
         }
       `}
@@ -122,7 +122,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden fixed top-20 left-0 right-0 mx-auto w-full max-w-sm bg-white shadow-lg rounded-b-xl py-6 px-4 z-40 transition-all duration-300">
+        <div className="md:hidden fixed top-20 left-0 right-0 w-full max-w-full bg-white shadow-lg rounded-b-xl py-6 px-4 z-40 transition-all duration-300">
           <nav className="flex flex-col items-start space-y-4">
             {navLinks.map((link) => (
               <NavLink
