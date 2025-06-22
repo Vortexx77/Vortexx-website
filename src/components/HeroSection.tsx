@@ -164,7 +164,7 @@ const HeroSection: React.FC = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="flex flex-col items-center bg-white/10 rounded-xl p-4 w-36 text-center"
+              className="flex flex-col items-center bg-white/10 rounded-xl p-4 w-full max-w-[140px] text-center"
             >
               <div className="rounded-lg bg-primary-600/20 p-4 text-primary-400 mb-2">
                 {service.icon}

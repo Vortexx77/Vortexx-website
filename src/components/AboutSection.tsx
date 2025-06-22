@@ -164,7 +164,7 @@ const AboutSection: React.FC = () => {
             </div>
           </div>
 
-          <div ref={imageRef} className="flex-1 relative w-full max-w-xl">
+          <div ref={imageRef} className="flex-1 relative w-full max-w-full md:max-w-xl">
             <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg bg-gray-900/10">
               <img 
                 src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
@@ -184,8 +184,8 @@ const AboutSection: React.FC = () => {
             </div>
 
             {/* Decorative shapes */}
-            <div className="absolute -bottom-5 -left-5 h-20 w-20 sm:h-24 sm:w-24 rounded-xl bg-primary-600/20 shadow-lg"></div>
-            <div className="absolute -right-5 -top-5 h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-secondary-600/20 shadow-lg"></div>
+            <div className="absolute -bottom-5 -left-5 h-20 w-20 sm:h-24 sm:w-24 rounded-xl bg-primary-600/20 shadow-lg hidden xs:block"></div>
+            <div className="absolute -right-5 -top-5 h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-secondary-600/20 shadow-lg hidden xs:block"></div>
           </div>
         </div>
       </div>
