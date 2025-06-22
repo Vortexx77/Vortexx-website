@@ -26,19 +26,19 @@ const HeroSection: React.FC = () => {
     const fadeElements = document.querySelectorAll('.fade-in');
     fadeElements.forEach((el) => observer.observe(el));
       
-      gsap.fromTo(
-    [headlineRef.current, subheadlineRef.current, exploreBtnRef.current, contactBtnRef.current],
-    { x: -200, opacity: 0 },
-    {
-      x: 0,
-      opacity: 1,
-      stagger: 0.15,
-      duration: 1,
-      ease: "power3.out"
-    }
-  );
+    gsap.fromTo(
+      [headlineRef.current, subheadlineRef.current, exploreBtnRef.current, contactBtnRef.current],
+      { x: -200, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        stagger: 0.15,
+        duration: 1,
+        ease: "power3.out"
+      }
+    );
 
-      if (digitalRef.current) {
+    if (digitalRef.current) {
       gsap.to(digitalRef.current, {
         backgroundPosition: "200% 0",
         duration: 3,
@@ -53,9 +53,6 @@ const HeroSection: React.FC = () => {
     return () => {
       fadeElements.forEach((el) => observer.unobserve(el));
     };
-
-    
-
   }, []);
 
   const services = [
@@ -95,57 +92,63 @@ const HeroSection: React.FC = () => {
         <div className="absolute bottom-1/3 right-1/3 h-96 w-96 rounded-full bg-secondary-500/20 blur-3xl"></div>
       </div>
       
-      <div className="container relative z-10">
+      <div className="mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex min-h-[80vh] flex-col items-center justify-center py-16 text-center">
-          <div className="fade-in max-w-4xl">
-            <span className="mb-6 inline-block rounded-full bg-primary-600/20 px-4 py-1 text-sm font-medium text-primary-400">
+          <div className="fade-in max-w-4xl w-full">
+            <span className="mb-6 inline-block rounded-full bg-primary-600/20 px-4 py-1 text-xs sm:text-sm font-medium text-primary-400">
               Innovative Tech Solutions
             </span>
             <h1 
-            ref={headlineRef}
-            className="mb-6 text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
+              ref={headlineRef}
+              className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white"
+            >
               Transforming Ideas Into <br />
               <span 
-              ref = {digitalRef}
-              className="inline-block bg-gradient-to-r from-primary-400 via-fuchsia-500 to-primary-600 bg-clip-text text-transparent">
+                ref={digitalRef}
+                className="inline-block bg-gradient-to-r from-primary-400 via-fuchsia-500 to-primary-600 bg-clip-text text-transparent"
+              >
                 Digital Reality
-                </span>
+              </span>
             </h1>
             <p 
-            ref={subheadlineRef}
-            className="mx-auto mb-10 max-w-2xl text-xl text-gray-300">
+              ref={subheadlineRef}
+              className="mx-auto mb-10 max-w-xl sm:max-w-2xl text-base sm:text-lg text-gray-300"
+            >
               We're a full-service technology company helping businesses innovate, 
               grow, and thrive in the digital landscape.
             </p>
-            <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 lg:ps-[250px]">
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Link 
-              ref ={exploreBtnRef}
-              to="/services" 
-              className="btn btn-primary">Explore Services
+                ref={exploreBtnRef}
+                to="/services" 
+                className="btn btn-primary w-full sm:w-auto text-center"
+              >
+                Explore Services
               </Link>
               <Link 
-              to="/contact"
-              ref={contactBtnRef}
-              className="btn bg-white text-primary-900 hover:bg-gray-100">
+                to="/contact"
+                ref={contactBtnRef}
+                className="btn bg-white text-primary-900 hover:bg-gray-100 w-full sm:w-auto text-center"
+              >
                 Get in Touch
               </Link>
             </div>
           </div>
         </div>
         
-        {/* Service highlight boxes */}
+        {/* Service highlight boxes for desktop */}
         <div className="hidden md:grid gap-6 pb-20 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="card group cursor-pointer bg-white/10 p-6 backdrop-blur-lg transition-all hover:bg-white/20 flex flex-col items-center"
+              className="card group cursor-pointer bg-white/10 p-6 backdrop-blur-lg transition-all hover:bg-white/20 flex flex-col items-center text-center"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="mb-4 rounded-lg bg-primary-600/20 p-3 text-primary-400 transition-colors group-hover:bg-primary-600/30 group-hover:text-primary-300">
                 {service.icon}
               </div>
-              <h3 className="mb-2 text-xl font-semibold text-white">{service.name}</h3>
-              <p className="text-gray-300">{service.description}</p>
+              <h3 className="mb-2 text-lg md:text-xl font-semibold text-white">{service.name}</h3>
+              <p className="text-sm md:text-base text-gray-300">{service.description}</p>
               <Link 
                 to={`/services#${service.name.toLowerCase().replace(' ', '-')}`}
                 className="mt-4 flex items-center text-primary-400 transition-colors group-hover:text-primary-300"
@@ -156,17 +159,17 @@ const HeroSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Mobile: icon and small title, horizontal */}
-        <div className="flex md:hidden justify-center gap-3 pb-2 mt-[-50px]">
+        {/* Service highlight for mobile */}
+        <div className="flex md:hidden flex-wrap justify-center gap-4 pb-10 mt-[-30px]">
           {services.map((service, index) => (
             <div
               key={index}
-              className="flex flex-col items-center bg-white/10 rounded-xl p-3"
+              className="flex flex-col items-center bg-white/10 rounded-xl p-4 w-36 text-center"
             >
-              <div className="rounded-lg bg-primary-600/20 p-6 text-primary-400 mb-2">
+              <div className="rounded-lg bg-primary-600/20 p-4 text-primary-400 mb-2">
                 {service.icon}
               </div>
-              <span className="text-base font-semibold text-white text-center">{service.name}</span>
+              <span className="text-sm font-semibold text-white">{service.name}</span>
             </div>
           ))}
         </div>
