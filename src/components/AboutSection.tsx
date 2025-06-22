@@ -171,13 +171,13 @@ const AboutSection: React.FC = () => {
                 alt="VORTEX Team" 
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 to-transparent p-6 flex items-end">
-                <div>
-                  <h3 className="mb-2 text-xl sm:text-2xl font-bold text-white">Our Team</h3>
-                  <p className="text-sm sm:text-base text-primary-100">
-                    A diverse group of passionate tech experts dedicated to your success. 
-                    VORTEX has helped over 100 clients achieve their digital goals. Our team combines 
-                    years of experience with a passion for innovation, ensuring every project is a success.
+              <div className="absolute inset-0  bg-gradient-to-t from-primary-900/70 to-transparent">
+                <div className="absolute bottom-32 left-6 right-6 ">
+                  <h3 className="mb-2 text-2xl font-bold text-white ">Our Team</h3>
+                  <p className="text-primary-100">
+                    A diverse group of passionate tech experts dedicated to your success
+                    VORTEX has helped over 100 clients achieve their digital goals. Our team combines years of experience with a passion for innovation, ensuring every project is a success. We believe in 
+                    building lasting partnerships and delivering measurable results.
                   </p>
                 </div>
               </div>
