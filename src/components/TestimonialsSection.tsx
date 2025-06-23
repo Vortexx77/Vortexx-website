@@ -86,7 +86,7 @@ const TestimonialsSection: React.FC = () => {
           <h2 className="mb-4 text-4xl font-bold text-white">What Our Clients Say</h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-300">
             Don't just take our word for it. Here's what our clients have to say about 
-            their experience working with VORTEX.
+            their experience working with VORTEXX.
           </p>
         </div>
         

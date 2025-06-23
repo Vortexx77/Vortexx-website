@@ -49,7 +49,6 @@ const About: React.FC = () => {
           trigger: visionMissionRef.current,
           start: 'top 80%',
           toggleActions: 'play none none reverse',
-          scrub: true
         }
       }
     );
@@ -68,7 +67,6 @@ const About: React.FC = () => {
           trigger: strategicGoalsRef.current,
           start: 'top 75%',
           toggleActions: 'play none none reverse',
-          scrub: true
         }
       }
     );
@@ -85,7 +83,6 @@ const About: React.FC = () => {
           trigger: storyRef.current,
           start: 'top 70%',
           toggleActions: 'play none none reverse',
-          scrub: true
         }
       }
     );
@@ -102,7 +99,6 @@ const About: React.FC = () => {
           trigger: storyRef.current,
           start: 'top 70%',
           toggleActions: 'play none none reverse',
-          scrub: true
         }
       }
     );
@@ -125,7 +121,6 @@ const About: React.FC = () => {
           trigger: timelineRef.current,
           start: 'top 60%',
           toggleActions: 'play none none reverse',
-          scrub: true
         }
       }
     );
@@ -144,7 +139,6 @@ const About: React.FC = () => {
           trigger: valuesRef.current,
           start: 'top 70%',
           toggleActions: 'play none none reverse',
-          scrub: true
         }
       }
     );
@@ -164,7 +158,6 @@ const About: React.FC = () => {
           start: 'top 75%',
           end: 'top 40%',
           toggleActions: 'play none none reverse',
-          scrub: true
         }
       }
     );
@@ -182,7 +175,6 @@ const About: React.FC = () => {
           start: 'top 80%',
           end: 'top 40%',
           toggleActions: 'play none none reverse',
-          scrub: true
         }
       }
     );
@@ -200,7 +192,6 @@ const About: React.FC = () => {
           start: 'top 80%',
           end: 'top 40%',
           toggleActions: 'play none none reverse',
-          scrub: true
         }
       }
     );
@@ -217,7 +208,6 @@ const About: React.FC = () => {
           trigger: '.section-header',
           start: 'top 85%',
           toggleActions: 'play none none reverse',
-          scrub: true
         }
       }
     );
@@ -317,11 +307,11 @@ const About: React.FC = () => {
   const strategicGoals = [
     {
       title: 'Global Expansion',
-      description: 'Establish VORTEX presence in key markets across North America, Europe, and Asia by 2026.'
+      description: 'Establish VORTEXX presence in key markets across Uganda by 2026.'
     },
     {
       title: 'Innovation Leadership',
-      description: 'Maintain position at the forefront of technological innovation through continuous R&D investment.'
+      description: 'Maintain position at the forefront of technological innovation through continuous Research and development investment.'
     },
     {
       title: 'Sustainable Growth',
@@ -367,9 +357,8 @@ const About: React.FC = () => {
               </div>
               <h2 className="mb-4 text-2xl font-bold">Our Vision</h2>
               <p className="text-gray-600">
-                To be the global leader in innovative technology solutions, driving digital 
-                transformation and empowering businesses to thrive in an ever-evolving 
-                digital landscape.
+                To be the leading creative technology company that empowers businesses and communities through smart web solutions, innovative
+                mobile applications, impactful graphics designs and efficient information management systems.
               </p>
             </div>
 
@@ -380,9 +369,7 @@ const About: React.FC = () => {
               </div>
               <h2 className="mb-4 text-2xl font-bold">Our Mission</h2>
               <p className="text-gray-600">
-                To deliver exceptional technology solutions that drive innovation, 
-                efficiency, and growth for our clients through expertise, dedication, 
-                and unwavering commitment to excellence.
+                To innovatively deliver AI powered user focused systems that drive success and inclusivity.
               </p>
             </div>
 
@@ -393,10 +380,8 @@ const About: React.FC = () => {
               </div>
               <h2 className="mb-4 text-2xl font-bold">Our Goals</h2>
               <p className="text-gray-600">
-                To continuously innovate, expand our global reach, and maintain our 
-                position as a trusted technology partner while fostering sustainable 
-                growth and development.
-              </p>
+                To provide top notch quality services, to deliver high quality projects and to achieve clients' satisfaction
+              </p> 
             </div>
           </div>
         </div>
@@ -437,14 +422,14 @@ const About: React.FC = () => {
               </span>
               <h2 className="mb-6 text-4xl font-bold">From Startup to Industry Leader</h2>
               <p className="mb-6 text-lg text-gray-600">
-                Founded in 2010, VORTEX began as a small web development agency with a team of just five passionate tech enthusiasts. 
-                Our founder, Sarah Mitchell, envisioned a company that would not just build websites, but create transformative digital 
+                Founded in 2024, VORTEXX began as a small web development agency with a team of just ten passionate tech students. 
+                Our founder, Kamugisha Ali, envisioned a company that would not just build websites, but create transformative digital 
                 experiences that drive business growth.
               </p>
               <p className="mb-6 text-lg text-gray-600">
                 As we gained the trust of our early clients, we expanded our services to include systems development, graphic design, 
-                digital marketing, and infrastructure management. Today, VORTEX has grown into a comprehensive technology solutions 
-                provider with a team of over 100 experts serving clients across industries worldwide.
+                digital marketing, and infrastructure management. Today, VORTEXX has grown into a comprehensive technology solutions 
+                provider.
               </p>
               <p className="text-lg text-gray-600">
                 Our journey has been defined by a relentless commitment to innovation, excellence, and our clients' success. 
@@ -459,17 +444,7 @@ const About: React.FC = () => {
                 alt="VORTEX Team" 
                 className="h-full w-full rounded-xl object-cover shadow-lg"
               />
-              <div className="absolute -bottom-6 -left-6 rounded-xl bg-white p-4 shadow-lg md:max-w-xs">
-                <div className="flex items-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-primary-600">
-                    <Users className="h-6 w-6" />
-                  </div>
-                  <div className="ml-4">
-                    <div className="text-xl font-bold">100+</div>
-                    <div className="text-gray-600">Team Members</div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
           
@@ -585,64 +560,12 @@ const About: React.FC = () => {
             ))}
           </div>
           
-          <div className="mt-16 text-center">
-            <p className="mx-auto mb-6 max-w-2xl text-lg">
-              Our full team includes over 100 talented individuals across development, design, 
-              marketing, infrastructure, and support roles.
-            </p>
-            <Link to="/careers" className="btn btn-primary">
-              Join Our Team
-            </Link>
-          </div>
+          
         </div>
       </section>
       
       {/* CTA section */}
-      <section ref={ctaRef} id="careers" className="section bg-primary-900 text-white">
-        <div className="container">
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="cta-content">
-              <h2 className="mb-4 text-4xl font-bold">Join Our Team</h2>
-              <p className="mb-6 text-lg text-gray-300">
-                We're always looking for talented individuals to join our growing team. 
-                At VORTEX, you'll work with cutting-edge technologies, collaborate with 
-                industry experts, and help solve challenging problems for our clients.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="mr-2 mt-1 text-primary-400">✓</div>
-                  <p>Competitive compensation and benefits</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="mr-2 mt-1 text-primary-400">✓</div>
-                  <p>Professional development opportunities</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="mr-2 mt-1 text-primary-400">✓</div>
-                  <p>Flexible work arrangements</p>
-                </div>
-                <div className="flex items-start">
-                  <div className="mr-2 mt-1 text-primary-400">✓</div>
-                  <p>Collaborative and inclusive culture</p>
-                </div>
-              </div>
-              <div className="mt-8">
-                <Link to="/careers" className="btn bg-white text-primary-900 hover:bg-gray-100">
-                  View Open Positions
-                </Link>
-              </div>
-            </div>
-            
-            <div className="cta-image flex items-center justify-center">
-              <img 
-                src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                alt="Team collaboration" 
-                className="rounded-xl shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      
     </div>
   );
 };

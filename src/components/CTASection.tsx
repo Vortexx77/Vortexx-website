@@ -47,7 +47,7 @@ const CTASection: React.FC = () => {
         <div ref={cardRef} className="mx-auto max-w-4xl rounded-3xl bg-black/80 p-12 text-center ">
           <h2 className="mb-6 text-4xl font-bold text-white">Ready to Transform Your Business?</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-300">
-            Partner with VORTEX to unlock your full digital potential. Our expert team is ready 
+            Partner with VORTEXX to unlock your full digital potential. Our expert team is ready 
             to help you navigate the ever-changing technology landscape.
           </p>
           <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">

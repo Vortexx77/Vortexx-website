@@ -65,7 +65,7 @@ const Header: React.FC = () => {
           <Link to="/" className="flex items-center space-x-2" onClick={closeMenu}>
             <Cpu className="h-8 w-8 text-primary-600" />
             <span className="text-2xl sm:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-primary-400 via-fuchsia-500 to-primary-600 bg-clip-text text-transparent animate-gradient">
-              VORTEX
+              VORTEXX
             </span>
           </Link>
 

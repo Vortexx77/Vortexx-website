@@ -84,7 +84,7 @@ const AboutSection: React.FC = () => {
   }, []);
 
   const animateCounters = () => {
-    const targets = [100, 250, 15, 98];
+    const targets = [50, 100, 2, 98];
     const speeds = [30, 20, 70, 25];
 
     targets.forEach((target, index) => {
@@ -136,13 +136,13 @@ const AboutSection: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div ref={textRef} className="flex-1 flex flex-col justify-center">
             <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
-              About VORTEX
+              About VORTEXX
             </span>
             <h2 className="mb-6 text-3xl sm:text-4xl font-bold">Pioneering Tech Solutions Since 2024</h2>
             <p className="mb-6 text-base sm:text-lg text-gray-600">
               VORTEXX was founded with a vision to transform how businesses leverage technology. 
               What started as a small web development team has grown into a comprehensive technology 
-              company serving clients across industries worldwide.
+              company serving clients across industries nationalwide.
             </p>
             <p className="mb-8 text-base sm:text-lg text-gray-600">
               Our mission is to empower organizations through innovative technology solutions 
@@ -176,7 +176,7 @@ const AboutSection: React.FC = () => {
                   <h3 className="mb-2 text-2xl font-bold text-white ">Our Team</h3>
                   <p className="text-primary-100">
                     A diverse group of passionate tech experts dedicated to your success
-                    VORTEX has helped over 100 clients achieve their digital goals. Our team combines years of experience with a passion for innovation, ensuring every project is a success. We believe in 
+                    VORTEXX has helped over 100 clients achieve their digital goals. Our team combines years of experience with a passion for innovation, ensuring every project is a success. We believe in 
                     building lasting partnerships and delivering measurable results.
                   </p>
                 </div>

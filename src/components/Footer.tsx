@@ -11,6 +11,7 @@ const Footer: React.FC = () => {
     { name: 'Graphics Design', path: '/services#graphics-design' },
     { name: 'Digital Marketing', path: '/services#digital-marketing' },
     { name: 'Infrastructure Management', path: '/services#infrastructure' },
+    { name: 'AI agents', path: '/services#infrastructure' },
   ];
   
   const company = [
@@ -35,7 +36,7 @@ const Footer: React.FC = () => {
           <div>
             <Link to="/" className="flex items-center space-x-2">
               <Cpu className="h-8 w-8 text-primary-500" />
-              <span className="text-2xl font-bold text-white">VORTEX</span>
+              <span className="text-2xl font-bold text-white">VORTEXX</span>
             </Link>
             <p className="mt-4 max-w-xs text-gray-400">
               Transforming businesses through innovative technology solutions and exceptional digital experiences.
@@ -94,11 +95,12 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="mr-2 h-5 w-5 flex-shrink-0 text-primary-500" />
-                <span>123 Innovation Drive, Tech City, TC 12345</span>
+                <span>Bukasa-Bugiri, Kawuku</span>
               </li>
               <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 text-primary-500" />
-                <span>(123) 456-7890</span>
+                <span>(+256) 745-231430 </span>
+                <span>/ 790-956548</span>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-2 h-5 w-5 text-primary-500" />
