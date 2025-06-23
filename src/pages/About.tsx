@@ -424,7 +424,7 @@ const About: React.FC = () => {
               <p className="mb-6 text-lg text-gray-600">
                 Founded in 2024, VORTEXX began as a small web development agency with a team of just ten passionate tech students. 
                 Our founder, Kamugisha Ali, envisioned a company that would not just build websites, but create transformative digital 
-                experiences that drive business growth.
+                experiences that drive business growth and commitment.
               </p>
               <p className="mb-6 text-lg text-gray-600">
                 As we gained the trust of our early clients, we expanded our services to include systems development, graphic design, 
