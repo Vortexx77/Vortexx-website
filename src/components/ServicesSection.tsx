@@ -21,7 +21,7 @@ const ServicesSection: React.FC = () => {
     );
     
      if (cardsRef.current) {
-    gsap.utils.toArray<HTMLElement>('.fade-in').forEach((card, i) => {
+    gsap.utils.toArray<HTMLElement>('.fade-in').forEach((card) => {
       gsap.fromTo(
         card,
         { opacity: 0 },
@@ -31,8 +31,6 @@ const ServicesSection: React.FC = () => {
             trigger: card,
             start: 'top 85%',
             end: 'top 40%',
-            scrub: true,
-            toggleActions: 'play reverse play reverse',
           },
         }
       );

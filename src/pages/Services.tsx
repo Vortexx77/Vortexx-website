@@ -62,12 +62,12 @@ const Services: React.FC = () => {
         if (header) {
           gsap.fromTo(header, 
             {
-              y: 60,
-              opacity: 0
+              opacity: 0,
+              y: 40
             },
             {
-              y: 0,
               opacity: 1,
+              y: 0,
               duration: 0.8,
               ease: "power2.out",
               scrollTrigger: {
@@ -81,18 +81,17 @@ const Services: React.FC = () => {
       });
 
       // Service cards animations
-      serviceCardsRef.current.forEach((card, index) => {
+      serviceCardsRef.current.forEach((card) => {
         if (card) {
-          const isEven = index % 2 === 0;
           gsap.fromTo(card,
             {
-              x: isEven ? -120 : 120,
               opacity: 0,
-              scale: 0.9
+              y: 40,
+              scale: 0.95
             },
             {
-              x: 0,
               opacity: 1,
+              y: 0,
               scale: 1,
               duration: 1,
               ease: "power3.out",
@@ -109,13 +108,13 @@ const Services: React.FC = () => {
       // Additional capabilities grid animation
       gsap.fromTo(additionalCapabilitiesRef.current,
         {
-          y: 80,
           opacity: 0,
-          scale: 0.8
+          y: 40,
+          scale: 0.95
         },
         {
-          y: 0,
           opacity: 1,
+          y: 0,
           scale: 1,
           duration: 0.6,
           stagger: 0.1,
@@ -131,14 +130,14 @@ const Services: React.FC = () => {
       // Approach steps animation
       gsap.fromTo(approachStepsRef.current,
         {
-          x: -100,
           opacity: 0,
-          rotationY: -15
+          y: 40,
+          scale: 0.95
         },
         {
-          x: 0,
           opacity: 1,
-          rotationY: 0,
+          y: 0,
+          scale: 1,
           duration: 0.8,
           stagger: 0.2,
           ease: "power2.out",
@@ -153,30 +152,16 @@ const Services: React.FC = () => {
       // Tech stack cards animation
       techStackRef.current.forEach((card, index) => {
         if (card) {
-          const directions = [
-            { x: -80, y: -40 }, // top-left
-            { x: 0, y: -80 },   // top
-            { x: 80, y: -40 },  // top-right
-            { x: -80, y: 40 },  // bottom-left
-            { x: 0, y: 80 },    // bottom
-            { x: 80, y: 40 }    // bottom-right
-          ];
-          const direction = directions[index % directions.length];
-
           gsap.fromTo(card,
             {
-              x: direction.x,
-              y: direction.y,
               opacity: 0,
-              scale: 0.7,
-              rotation: Math.random() * 20 - 10
+              y: 40,
+              scale: 0.95
             },
             {
-              x: 0,
-              y: 0,
               opacity: 1,
+              y: 0,
               scale: 1,
-              rotation: 0,
               duration: 0.8,
               ease: "back.out(1.4)",
               delay: index * 0.1,
@@ -260,6 +245,19 @@ const Services: React.FC = () => {
         'IT maintenance & support'
       ],
       image: 'https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    },
+    {
+      id: 'ai-agents',
+      title: 'AI Agents',
+      description: 'Intelligent AI-powered agents to automate tasks and enhance customer experience.',
+      icon: <LineChart className="h-12 w-12" />,
+      features: [
+        'Custom AI chatbot development',
+        'Process automation',
+        'Natural language processing',
+        'Integration with business systems'
+      ],
+      image: 'https://images.pexels.com/photos/110854/pexels-photo-110854.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     }
   ];
   
@@ -329,7 +327,7 @@ const Services: React.FC = () => {
                     <img 
                       src={service.image} 
                       alt={service.title} 
-                      className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                      className={`w-full object-cover transition-transform duration-700 hover:scale-105 ${service.id === 'infrastructure' ? 'h-48' : 'h-full'}`}
                     />
                   </div>
                 </div>

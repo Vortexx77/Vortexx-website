@@ -1,8 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { Users, CheckCircle, Target, Compass, Flag } from 'lucide-react';
+// import { Link } from 'react-router-dom';
+import { CheckCircle, Target, Compass, Flag } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
+// import Ian from '../img/Ian.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,96 +28,83 @@ const About: React.FC = () => {
     const heroTimeline = gsap.timeline();
     heroTimeline
       .fromTo('.hero-title', 
-        { x: -300, opacity: 0 }, 
-        { x: 0, 
-        opacity: 1,
-        duration: 1.2, 
-        delay: 1.2,
-        ease: 'power3.out', }
+        { opacity: 0, y: 40 }, 
+        { opacity: 1, y: 0, duration: 1.2, delay: 1.2, ease: 'power3.out' }
       )
       .fromTo('.hero-subtitle', 
-        { x: 300, opacity: 0 }, 
-        { x: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: -0.8 }
+        { opacity: 0, y: 40 }, 
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: -0.8 }
       );
 
     // Vision, Mission, Goals cards
     gsap.fromTo('.vision-mission-card', 
-      { x: -100, opacity: 0, scale: 0.8 }, 
+      { opacity: 0, y: 40, scale: 0.95 }, 
       { 
-        x: 0, 
         opacity: 1, 
+        y: 0, 
         scale: 1, 
         duration: 1, 
-        ease: 'back.out(1.7)',
+        ease: 'power2.out',
         stagger: 0.2,
         scrollTrigger: {
           trigger: visionMissionRef.current,
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
         }
       }
     );
 
     // Strategic Goals
     gsap.fromTo('.strategic-goal-card', 
-      { y: 60, opacity: 0, rotationX: 30 }, 
+      { opacity: 0, y: 40 }, 
       { 
-        y: 0, 
         opacity: 1, 
-        rotationX: 0,
+        y: 0, 
         duration: 0.8, 
         ease: 'power2.out',
         stagger: 0.15,
         scrollTrigger: {
           trigger: strategicGoalsRef.current,
           start: 'top 75%',
-          toggleActions: 'play none none reverse',
         }
       }
     );
 
     // Story section
     gsap.fromTo('.story-content', 
-      { x: -250, opacity: 0 }, 
+      { opacity: 0, y: 40 }, 
       { 
-        x: 0, 
         opacity: 1, 
+        y: 0, 
         duration: 1.2, 
         ease: 'power3.out',
         scrollTrigger: {
           trigger: storyRef.current,
           start: 'top 70%',
-          toggleActions: 'play none none reverse',
         }
       }
     );
 
     gsap.fromTo('.story-image', 
-      { x: 150, opacity: 0, scale: 0.8 }, 
+      { opacity: 0, y: 40, scale: 0.95 }, 
       { 
-        x: 0, 
         opacity: 1, 
+        y: 0, 
         scale: 1,
         duration: 1.2, 
-        ease: 'elastic.out(1, 0.8)',
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: storyRef.current,
           start: 'top 70%',
-          toggleActions: 'play none none reverse',
         }
       }
     );
 
     // Timeline items
     gsap.fromTo('.timeline-item', 
+      { opacity: 0, y: 40, scale: 0.95 }, 
       { 
-        x: (index) => index % 2 === 0 ? -200 : 200,
-        opacity: 0,
-        scale: 0.7
-      }, 
-      { 
-        x: 0, 
         opacity: 1, 
+        y: 0, 
         scale: 1,
         duration: 1, 
         ease: 'power2.out',
@@ -120,35 +112,33 @@ const About: React.FC = () => {
         scrollTrigger: {
           trigger: timelineRef.current,
           start: 'top 60%',
-          toggleActions: 'play none none reverse',
         }
       }
     );
 
     // Values cards
     gsap.fromTo('.value-card', 
-      { y: 100, opacity: 0, rotationY: 45 }, 
+      { opacity: 0, y: 40, scale: 0.95 }, 
       { 
-        y: 0, 
         opacity: 1, 
-        rotationY: 0,
+        y: 0, 
+        scale: 1,
         duration: 1, 
         ease: 'power3.out',
         stagger: 0.1,
         scrollTrigger: {
           trigger: valuesRef.current,
           start: 'top 70%',
-          toggleActions: 'play none none reverse',
         }
       }
     );
 
     // Team cards
     gsap.fromTo('.team-card', 
-      { y: 120, opacity: 0, scale: 0.9 }, 
+      { opacity: 0, y: 40, scale: 0.95 }, 
       { 
-        y: 0, 
         opacity: 1, 
+        y: 0, 
         scale: 1,
         duration: 0.8, 
         ease: 'back.out(1.5)',
@@ -157,57 +147,53 @@ const About: React.FC = () => {
           trigger: teamRef.current,
           start: 'top 75%',
           end: 'top 40%',
-          toggleActions: 'play none none reverse',
         }
       }
     );
 
     // CTA section
     gsap.fromTo('.cta-content', 
-      { x: -100, opacity: 0 }, 
+      { opacity: 0, y: 40 }, 
       { 
-        x: 0, 
         opacity: 1, 
+        y: 0, 
         duration: 1, 
         ease: 'power3.out',
         scrollTrigger: {
           trigger: ctaRef.current,
           start: 'top 80%',
           end: 'top 40%',
-          toggleActions: 'play none none reverse',
         }
       }
     );
 
     gsap.fromTo('.cta-image', 
-      { x: 100, opacity: 0, rotationY: 15 }, 
+      { opacity: 0, y: 40, scale: 0.95 }, 
       { 
-        x: 0, 
         opacity: 1, 
-        rotationY: 0,
+        y: 0, 
+        scale: 1,
         duration: 1.2, 
         ease: 'power3.out',
         scrollTrigger: {
           trigger: ctaRef.current,
           start: 'top 80%',
           end: 'top 40%',
-          toggleActions: 'play none none reverse',
         }
       }
     );
 
     // Section headers animation
     gsap.fromTo('.section-header', 
-      { y: 50, opacity: 0 }, 
+      { opacity: 0, y: 40 }, 
       { 
-        y: 0, 
         opacity: 1, 
+        y: 0, 
         duration: 0.8, 
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.section-header',
           start: 'top 85%',
-          toggleActions: 'play none none reverse',
         }
       }
     );
@@ -219,62 +205,76 @@ const About: React.FC = () => {
 
   const teamMembers = [
     {
-      name: 'Sarah Mitchell',
+      name: 'Kamugisha Ali',
       position: 'CEO & Founder',
-      bio: 'With over 20 years of experience in the tech industry, Sarah founded VORTEX with a vision to transform how businesses leverage technology.',
+      bio: 'Kamugisha is a visionary leader with a passion for technology and innovation. He has led VORTEXX from a small startup to a leading technology solutions provider.',
       image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     },
     {
-      name: 'David Chen',
+      name: 'Asiima Crisen',
       position: 'CTO',
-      bio: 'David leads our technical team, bringing 15+ years of experience in software architecture and systems development.',
-      image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      bio: 'Asiima is the technical mastermind behind VORTEXX, overseeing all development projects and ensuring the highest standards of quality and innovation.',
+      image: '/img/Crisen.jpg'
     },
     {
-      name: 'Olivia Rodriguez',
-      position: 'Creative Director',
-      bio: 'Olivia oversees all design projects, bringing her award-winning design expertise and eye for detail to every client project.',
-      image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      name: 'Kategere Ian Victor',
+      position: 'COO',
+      bio: 'Kategere is responsible for the day-to-day operations of VORTEXX, ensuring that projects run smoothly and efficiently while maintaining high client satisfaction.',
+      image: '/img/Ian.jpg'
     },
     {
-      name: 'Marcus Johnson',
-      position: 'Marketing Director',
-      bio: 'Marcus leads our digital marketing strategies, helping clients achieve remarkable growth through data-driven approaches.',
+      name: 'Nassuuna Gloria Christine',
+      position: 'CFO',
+      bio: 'Gloria manages the financial health of VORTEXX, overseeing budgeting, forecasting, and financial planning to ensure sustainable growth.',
       image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    },
+    {
+      name: 'Mungufeni Marvin',
+      position: 'Mobiliser & Infrastructure Manager',
+      bio: 'Marvin is the backbone of our infrastructure, ensuring that our systems are robust, secure, and scalable to meet the demands of our clients.',
+      image: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    },
+    {
+      name: 'Tukamuhembwa Newton',
+      position: 'Secretary & Deveoper',
+      bio: 'Newton is a versatile developer who plays a key role in both our software development and administrative functions, ensuring seamless communication and project execution.',
+      image: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    },
+    {
+      name: 'Sekimpi Ibrahim',
+      position: 'Marketer & Developer',
+      bio: 'Ibrahim combines his skills in marketing and development to create effective digital strategies that enhance our clients\' online presence.',
+      image: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    },
+    {
+      name: 'Nakibinge Collins',
+      position: 'Full Stack Deveoper',
+      bio: 'Collins is a talented developer specializing in front-end technologies, creating beautiful and user-friendly interfaces.',
+      image: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     }
   ];
 
   const milestones = [
     {
-      year: '2010',
+      year: 'November, 2024',
       title: 'Foundation',
-      description: 'VORTEX was founded with a focus on web development services.'
+      description: 'VORTEXX was founded with a focus on web development services. The team consisted of ten passionate tech students led by Kamugisha Ali.'
     },
     {
-      year: '2013',
+      year: 'January, 2025',
       title: 'Expansion',
-      description: 'Expanded services to include systems development and design.'
+      description: 'Expanded services to include systems development and design. This allowed VORTEXX to offer comprehensive solutions to clients.'
     },
     {
-      year: '2016',
+      year: 'March, 2025',
       title: 'Growth',
-      description: 'Opened second office and reached 50 employees milestone.'
+      description: 'Diversified into digital marketing and infrastructure management and taking on new clients across various sectors.'
     },
     {
-      year: '2019',
+      year: 'June, 2025',
       title: 'Innovation',
-      description: 'Launched dedicated AI and machine learning division.'
+      description: 'Launched dedicated AI and machine learning division. This division focuses on developing AI agents and automation solutions for clients.'
     },
-    {
-      year: '2022',
-      title: 'Global Reach',
-      description: 'Expanded to international markets with clients in 15+ countries.'
-    },
-    {
-      year: '2025',
-      title: 'Industry Leader',
-      description: 'Recognized as a top tech solutions provider worldwide.'
-    }
   ];
 
   const values = [
@@ -532,35 +532,42 @@ const About: React.FC = () => {
             <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
               Our Team
             </span>
-            <h2 className="mb-4 text-4xl font-bold">Meet Our Leadership</h2>
+            <h2 className="mb-4 text-4xl font-bold">Meet Our Team</h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600">
               The talented individuals driving our vision and leading our company forward.
             </p>
           </div>
-          
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <Swiper
+            modules={[Navigation]}
+            navigation
+            spaceBetween={24}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 4 },
+              1280: { slidesPerView: 5 },
+            }}
+            className="team-swiper"
+          >
             {teamMembers.map((member, index) => (
-              <div 
-                key={index}
-                className="team-card card group overflow-hidden"
-              >
-                <div className="h-64 overflow-hidden">
-                  <img 
-                    src={member.image} 
-                    alt={member.name} 
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+              <SwiperSlide key={index}>
+                <div className="team-card card group overflow-hidden">
+                  <div className="h-64 overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="mb-1 text-xl font-bold">{member.name}</h3>
+                    <div className="mb-4 text-primary-600">{member.position}</div>
+                    <p className="text-gray-600">{member.bio}</p>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="mb-1 text-xl font-bold">{member.name}</h3>
-                  <div className="mb-4 text-primary-600">{member.position}</div>
-                  <p className="text-gray-600">{member.bio}</p>
-                </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
-          
-          
+          </Swiper>
         </div>
       </section>
       

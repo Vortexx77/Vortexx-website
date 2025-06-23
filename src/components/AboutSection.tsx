@@ -12,32 +12,20 @@ const AboutSection: React.FC = () => {
   const [counters, setCounters] = useState([0, 0, 0, 0]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('appear');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
     if (textRef.current) {
       gsap.fromTo(
         textRef.current,
-        { x: -200, opacity: 0 },
+        { opacity: 0, scale: 0.8 },
         {
-          x: 0,
           opacity: 1,
+          scale: 1,
           duration: 1.2,
-          delay: 1.2,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: textRef.current,
             start: 'top 80%',
-            end: 'top 40%',
-            scrub: true,
+            end: 'bottom 20%',
+            // toggleActions: 'play none none reverse',
           },
         }
       );
@@ -46,28 +34,26 @@ const AboutSection: React.FC = () => {
     if (imageRef.current) {
       gsap.fromTo(
         imageRef.current,
-        { x: 200, opacity: 0 },
+        { opacity: 0, scale: 0.8 },
         {
-          x: 0,
           opacity: 1,
+          scale: 1,
           duration: 1.2,
-          delay: 1.2,
+          delay: 0.2,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: imageRef.current,
             start: 'top 80%',
-            end: 'top 40%',
-            scrub: true,
+            end: 'bottom 20%',
+            // toggleActions: 'play none none reverse',
           },
         }
       );
     }
 
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach((el) => observer.observe(el));
-
+    // Cleanup function
     return () => {
-      fadeElements.forEach((el) => observer.unobserve(el));
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
@@ -131,50 +117,67 @@ const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <div ref={textRef} className="flex-1 flex flex-col justify-center">
-            <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
-              About VORTEXX
-            </span>
-            <h2 className="mb-6 text-3xl sm:text-4xl font-bold">Pioneering Tech Solutions Since 2024</h2>
-            <p className="mb-6 text-base sm:text-lg text-gray-600">
-              VORTEXX was founded with a vision to transform how businesses leverage technology. 
-              What started as a small web development team has grown into a comprehensive technology 
-              company serving clients across industries nationalwide.
-            </p>
-            <p className="mb-8 text-base sm:text-lg text-gray-600">
-              Our mission is to empower organizations through innovative technology solutions 
-              that drive growth, enhance efficiency, and create exceptional digital experiences.
-            </p>
+        <div className="grid md:grid-cols-2 gap-16 items-stretch">
+          {/* Text Content */}
+          <div ref={textRef} className="flex flex-col justify-center space-y-6">
+            <div className="space-y-4">
+              <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800 tracking-wide uppercase">
+                About VORTEXX
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                Pioneering Tech Solutions Since 2024
+              </h2>
+            </div>
+            
+            <div className="space-y-6 text-gray-600 leading-relaxed">
+              <p className="text-lg">
+                VORTEXX was founded with a vision to transform how businesses leverage technology. 
+                What started as a small web development team has grown into a comprehensive technology 
+                company serving clients across industries nationwide.
+              </p>
+              <p className="text-lg">
+                Our mission is to empower organizations through innovative technology solutions 
+                that drive growth, enhance efficiency, and create exceptional digital experiences.
+              </p>
+            </div>
 
-            <div className="mb-8 space-y-4">
+            <div className="space-y-6 pt-4">
               {values.map((value, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="mr-4 mt-1 text-primary-600">
-                    <CheckCircle className="h-5 w-5" />
+                <div key={index} className="flex items-start group">
+                  <div className="flex-shrink-0 mr-4 mt-1">
+                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                      <CheckCircle className="h-4 w-4 text-blue-600" />
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-base sm:text-lg font-semibold">{value.title}</h4>
-                    <p className="text-gray-600 text-sm sm:text-base">{value.description}</p>
+                  <div className="space-y-1">
+                    <h4 className="text-lg font-semibold text-gray-900">{value.title}</h4>
+                    <p className="text-gray-600 leading-relaxed">{value.description}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div ref={imageRef} className="flex-1 relative w-full max-w-full md:max-w-xl">
-            <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg bg-gray-900/10">
-              <img 
-                src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                alt="VORTEX Team" 
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0  bg-gradient-to-t from-primary-900/70 to-transparent">
-                <div className="absolute bottom-32 left-6 right-6 ">
-                  <h3 className="mb-2 text-2xl font-bold text-white ">Our Team</h3>
-                  <p className="text-primary-100">
+          {/* Image Content */}
+          <div ref={imageRef} className="flex flex-col">
+            <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden group h-full">
+              {/* Main Image Container - takes full height */}
+              <div className="h-4/5 overflow-hidden">
+                <img 
+                  src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                  alt="VORTEXX Team" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent"></div>
+              </div>
+              
+              {/* Text Content at bottom of card */}
+              <div className="h-1/5 p-6 bg-white flex flex-col justify-center">
+                <div className="space-y-2">
+                  <h3 className="text-xl font-bold text-gray-900">VORTEXX Team</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
                     A diverse group of passionate tech experts dedicated to your success
                     VORTEXX has helped over 100 clients achieve their digital goals. Our team combines years of experience with a passion for innovation, ensuring every project is a success. We believe in 
                     building lasting partnerships and delivering measurable results.
@@ -182,32 +185,44 @@ const AboutSection: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* Decorative shapes */}
-            <div className="absolute -bottom-5 -left-5 h-20 w-20 sm:h-24 sm:w-24 rounded-xl bg-primary-600/20 shadow-lg hidden xs:block"></div>
-            <div className="absolute -right-5 -top-5 h-16 w-16 sm:h-20 sm:w-20 rounded-xl bg-secondary-600/20 shadow-lg hidden xs:block"></div>
+            
+            {/* Decorative Elements */}
+            <div className="relative">
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-blue-500/10 rounded-2xl rotate-12 hidden lg:block"></div>
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-purple-500/10 rounded-xl -rotate-12 hidden lg:block"></div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Counter Section */}
+      {/* Stats Section */}
       <div 
         ref={counterRef}
-        className="mt-20 bg-gray-900 text-white py-16 px-4 sm:px-10"
+        className="mt-24 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white py-20 px-4 sm:px-10 rounded-3xl mx-4 sm:mx-0"
       >
         <div className="max-w-7xl mx-auto">
-          <h3 className="mb-12 text-center text-2xl sm:text-3xl font-bold text-white">Our Impact by the Numbers</h3>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="text-center mb-16">
+            <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Our Impact by the Numbers</h3>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+              Trusted by businesses worldwide to deliver exceptional results and drive digital transformation
+            </p>
+          </div>
+          
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat, index) => (
               <div 
                 key={index} 
-                className="flex flex-col items-center rounded-lg bg-gray-800 p-6 text-center shadow-md transition hover:scale-105"
+                className="group text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
-                <div className="mb-3 text-blue-400">{stat.icon}</div>
-                <div className="text-3xl sm:text-4xl font-bold">
+                <div className="mb-6 text-blue-400 group-hover:text-blue-300 transition-colors mx-auto w-fit">
+                  <div className="p-4 bg-blue-500/20 rounded-full group-hover:bg-blue-500/30 transition-colors">
+                    {stat.icon}
+                  </div>
+                </div>
+                <div className="text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   {index === 3 ? `${counters[index]}%` : `${counters[index]}${index !== 2 ? '+' : ''}`}
                 </div>
-                <p className="mt-2 text-gray-300 text-sm sm:text-base">{stat.label}</p>
+                <p className="text-gray-300 font-medium tracking-wide">{stat.label}</p>
               </div>
             ))}
           </div>
