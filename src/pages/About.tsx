@@ -238,13 +238,13 @@ const About: React.FC = () => {
       name: 'Tukamuhembwa Newton',
       position: 'Secretary & Deveoper',
       bio: 'Newton is a versatile developer who plays a key role in both our software development and administrative functions, ensuring seamless communication and project execution.',
-      image: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      image: '/img/Newton.jpg'
     },
     {
       name: 'Sekimpi Ibrahim',
       position: 'Marketer & Developer',
       bio: 'Ibrahim combines his skills in marketing and development to create effective digital strategies that enhance our clients\' online presence.',
-      image: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      image: '/img/Ibra.jpg'
     },
     {
       name: 'Nakibinge Collins',
@@ -448,7 +448,7 @@ const About: React.FC = () => {
             </div>
           </div>
           
-          {/* Timeline */}
+         {/* Timeline */}
           <div ref={timelineRef} className="mt-20">
             <div className="section-header mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold">Our Journey</h2>
@@ -456,32 +456,36 @@ const About: React.FC = () => {
                 A timeline of key milestones in our growth and evolution
               </p>
             </div>
-            
+
             <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-primary-100"></div>
-              
+              {/* Timeline line - hidden on small devices */}
+              <div className="hidden md:block absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-primary-100"></div>
+
               <div className="space-y-12">
                 {milestones.map((milestone, index) => (
-                  <div 
+                  <div
                     key={index}
-                    className={`timeline-item relative flex ${
-                      index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                    }`}
+                    className={`
+                      relative flex flex-col md:flex-row 
+                      ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}
+                    `}
                   >
-                    <div className="mx-auto w-1/2 px-10">
-                      {/* Empty div for spacing on alternating sides */}
+                    {/* Empty spacer - only on md and up */}
+                    <div className="hidden md:block mx-auto w-1/2 px-10"></div>
+
+                    {/* Center Dot */}
+                    <div className="absolute left-1/2 top-6 -translate-x-1/2 z-10">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-600 text-white shadow-lg">
+                        <div className="h-3 w-3 rounded-full bg-white"></div>
+                      </div>
                     </div>
-                    
-                    {/* Center dot */}
-                    <div className="absolute left-1/2 top-6 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full bg-primary-600 text-white shadow-lg">
-                      <div className="h-3 w-3 rounded-full bg-white"></div>
-                    </div>
-                    
-                    <div className={`mx-auto w-1/2 px-10 ${
-                      index % 2 === 0 ? 'text-right' : 'text-left'
-                    }`}>
-                      <div className="card p-6">
+
+                    {/* Content Box */}
+                    <div className={`
+                      mx-auto w-full md:w-1/2 px-4 md:px-10
+                      ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}
+                    `}>
+                      <div className="card p-6 bg-white shadow-md rounded-lg">
                         <div className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
                           {milestone.year}
                         </div>
