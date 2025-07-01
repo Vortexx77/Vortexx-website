@@ -7,7 +7,7 @@ import CTASection from '../components/CTASection';
 
 const Home: React.FC = () => {
   useEffect(() => {
-    document.title = 'VORTEX - Innovative Tech Solutions';
+    document.title = 'VORTEXX';
   }, []);
 
   return (
