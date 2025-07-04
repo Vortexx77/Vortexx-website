@@ -166,7 +166,7 @@ const AboutSection: React.FC = () => {
               {/* Main Image Container - takes full height */}
               <div className="h-4/5 overflow-hidden">
                 <img 
-                  src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                  src="img/aboutHome.jpg" 
                   alt="VORTEXX Team" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />

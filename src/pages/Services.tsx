@@ -19,7 +19,7 @@ const Services: React.FC = () => {
   const techStackRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    document.title = 'Our Services | VORTEX';
+    document.title = 'Our Services | VORTEXX';
     
     // Scroll to specific service section if hash is present
     const hash = window.location.hash;
@@ -257,7 +257,7 @@ const Services: React.FC = () => {
         'Natural language processing',
         'Integration with business systems'
       ],
-      image: 'https://images.pexels.com/photos/110854/pexels-photo-110854.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      image: 'img/ai.jpg'
     }
   ];
   

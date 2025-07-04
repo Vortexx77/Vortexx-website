@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 const Privacy: React.FC = () => {
   useEffect(() => {
-    document.title = 'Privacy Policy | VORTEX';
+    document.title = 'Privacy Policy | VORTEXX';
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ContactForm from '../components/ContactForm';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,61 +7,106 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const Contact: React.FC = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const faqRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    document.title = 'Contact Us | VORTEX';
+    document.title = 'Contact Us | VORTEXX';
 
-    // Hero Section Animation (Slide in from top)
-    gsap.fromTo(
-      '.hero-content',
-      {
-        y: 80,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power3.out',
-      }
-    );
+    const ctx = gsap.context(() => {
+      // Hero Section Animation (Scale and fade in)
+      gsap.fromTo(
+        '.hero-content',
+        {
+          scale: 0.8,
+          opacity: 0,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+        }
+      );
 
-    // FAQ Cards Staggered Slide-In with Alternating Directions
-    const cards = gsap.utils.toArray('.faq-card') as HTMLElement[];
+      // FAQ Cards Staggered Animation with Alternating Directions
+      const cards = gsap.utils.toArray<HTMLElement>('.faq-card');
 
-    cards.forEach((card, index) => {
-  const direction = index % 2 === 0 ? -100 : 100; // alternate left/right
+      cards.forEach((card, index) => {
+        const direction = index % 2 === 0 ? -100 : 100;
 
-  gsap.fromTo(
-    card,
+        gsap.fromTo(
+          card,
+          {
+            x: direction,
+            scale: 0.8,
+            opacity: 0,
+          },
+          {
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: index * 0.1,
+          }
+        );
+      });
+    }, [heroRef, faqRef]);
+
+    // Cleanup function
+    return () => {
+      ctx.revert();
+    };
+  }, []);
+
+  const faqData = [
     {
-      x: direction,
-      opacity: 0,
+      id: 'faq-1',
+      question: 'What types of businesses do you work with?',
+      answer:
+        'We work with businesses of all sizes across various industries, from startups to enterprise-level organizations. Our solutions are tailored to meet the specific needs and goals of each client.',
     },
     {
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
-      },
-      x: 0,
-      opacity: 1,
-      duration: 0.8,
-      ease: 'power3.out',
-      delay: index * 0.1,
-    }
-  );
-});
-
-  }, []);
+      id: 'faq-2',
+      question: 'How long does a typical project take?',
+      answer:
+        'Project timelines vary depending on the scope and complexity. A simple website might take 4-6 weeks, while a complex system could take several months. We provide detailed timelines during our planning phase.',
+    },
+    {
+      id: 'faq-3',
+      question: 'Do you offer ongoing support and maintenance?',
+      answer:
+        'Yes, we offer various support and maintenance packages to ensure your digital assets continue to perform optimally. Our team is available for updates, troubleshooting, and ongoing enhancements.',
+    },
+    {
+      id: 'faq-4',
+      question: 'How do you handle project pricing?',
+      answer:
+        'We provide customized quotes based on project requirements. Depending on the project, we may use fixed-price models, time and materials pricing, or retainer agreements. We\'re transparent about costs from the beginning.',
+    },
+    {
+      id: 'faq-5',
+      question: 'Can you work with our existing systems and technology?',
+      answer:
+        'Absolutely. We specialize in both building new solutions and integrating with or enhancing existing systems. Our team has experience working with a wide range of technologies and platforms.',
+    },
+  ];
 
   return (
     <div className="pt-20">
       {/* Hero section */}
       <section
+        ref={heroRef}
         className="bg-primary-900 py-20 text-white"
         style={{
           backgroundImage:
-            'linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)), url(https://images.pexels.com/photos/5119214/pexels-photo-5119214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',
+            'linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)), url(img/contact.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -82,7 +127,7 @@ const Contact: React.FC = () => {
       </section>
 
       {/* FAQ section */}
-      <section className="section">
+      <section className="section" ref={faqRef}>
         <div className="container">
           <div className="mb-12 text-center">
             <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
@@ -95,40 +140,17 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="mx-auto max-w-3xl space-y-6">
-            {[
-              {
-                question: 'What types of businesses do you work with?',
-                answer:
-                  'We work with businesses of all sizes across various industries, from startups to enterprise-level organizations. Our solutions are tailored to meet the specific needs and goals of each client.',
-              },
-              {
-                question: 'How long does a typical project take?',
-                answer:
-                  'Project timelines vary depending on the scope and complexity. A simple website might take 4-6 weeks, while a complex system could take several months. We provide detailed timelines during our planning phase.',
-              },
-              {
-                question: 'Do you offer ongoing support and maintenance?',
-                answer:
-                  'Yes, we offer various support and maintenance packages to ensure your digital assets continue to perform optimally. Our team is available for updates, troubleshooting, and ongoing enhancements.',
-              },
-              {
-                question: 'How do you handle project pricing?',
-                answer:
-                  'We provide customized quotes based on project requirements. Depending on the project, we may use fixed-price models, time and materials pricing, or retainer agreements. We\'re transparent about costs from the beginning.',
-              },
-              {
-                question: 'Can you work with our existing systems and technology?',
-                answer:
-                  'Absolutely. We specialize in both building new solutions and integrating with or enhancing existing systems. Our team has experience working with a wide range of technologies and platforms.',
-              },
-            ].map((item, index) => (
+            {faqData.map((item) => (
               <div
-                key={index}
+                key={item.id}
                 className="card overflow-hidden rounded-lg border border-gray-200 faq-card"
               >
                 <details className="group">
-                  <summary className="flex cursor-pointer items-center justify-between bg-white p-6 font-semibold">
-                    {item.question}
+                  <summary 
+                    className="flex cursor-pointer items-center justify-between bg-white p-6 font-semibold focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                    aria-expanded="false"
+                  >
+                    <span>{item.question}</span>
                     <div className="ml-2 text-primary-600 transition-transform duration-300 group-open:rotate-180">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -136,6 +158,7 @@ const Contact: React.FC = () => {
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
+                        aria-hidden="true"
                       >
                         <path
                           strokeLinecap="round"

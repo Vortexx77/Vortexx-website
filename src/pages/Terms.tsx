@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 const Terms: React.FC = () => {
   useEffect(() => {
-    document.title = 'Terms of Service | VORTEX';
+    document.title = 'Terms of Service | VORTEXX';
   }, []);
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, User } from 'lucide-react';
 
 const TestimonialsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -7,38 +7,30 @@ const TestimonialsSection: React.FC = () => {
   const testimonials = [
     {
       id: 1,
-      content: "VORTEX completely transformed our online presence. Their web design and digital marketing strategy increased our traffic by 200% and conversions by 80% within just three months.",
-      author: "Sarah Johnson",
-      position: "CEO, Retail Innovation",
-      image: "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      content: "VORTEXX completely transformed our online presence. Their web design and digital marketing strategy increased our traffic by 200% and conversions by 80% within just three months.",
+      author: "Atwiine Johnson",
     },
     {
       id: 2,
-      content: "The custom ERP system VORTEX developed has streamlined our operations, reduced manual errors, and cut processing time by 65%. Their team was professional from start to finish.",
-      author: "Mark Williams",
-      position: "Operations Director, Global Logistics",
-      image: "https://images.pexels.com/photos/3778603/pexels-photo-3778603.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      content: "Working with VORTEX has been a game-changer for our business. Their team is not only skilled but also genuinely cares about our success. The custom software they developed streamlined our operations and improved our customer satisfaction.",
+      author: "Mark Angel",
     },
     {
       id: 3,
-      content: "We've worked with several IT providers, but VORTEX stands out for their technical expertise and commitment to our success. They're true partners in our business growth.",
-      author: "Jennifer Lee",
-      position: "CTO, FinTech Solutions",
-      image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      content: "VORTEXX's expertise in systems development and infrastructure management has been invaluable. They helped us migrate to a more robust system that supports our growth, and their ongoing support is top-notch.",
+      author: "Jennifer Kasuku",
     }
   ];
   
-  // Auto-slide functionality
   useEffect(() => {
     const autoSlide = setInterval(() => {
       setCurrentIndex((prevIndex) => 
         prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000); // Change slide every 5 seconds
-
+    }, 5000);
     return () => clearInterval(autoSlide);
   }, [testimonials.length]);
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -101,22 +93,22 @@ const TestimonialsSection: React.FC = () => {
                 className="min-w-full p-8 md:p-12"
               >
                 <div className="mb-6 flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <Star
+                      key={`star-${testimonial.id}-${index}`}
+                      className="h-5 w-5 fill-yellow-400 text-yellow-400"
+                    />
                   ))}
                 </div>
                 <blockquote className="mb-8 text-xl italic text-gray-700">
                   "{testimonial.content}"
                 </blockquote>
                 <div className="flex items-center">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.author}
-                    className="mr-4 h-14 w-14 rounded-full object-cover"
-                  />
+                  <div className="mr-4 flex h-14 w-14 items-center justify-center rounded-full bg-gray-200 text-primary-600">
+                    <User className="h-7 w-7" />
+                  </div>
                   <div>
                     <div className="font-semibold">{testimonial.author}</div>
-                    <div className="text-sm text-gray-500">{testimonial.position}</div>
                   </div>
                 </div>
               </div>
@@ -140,11 +132,10 @@ const TestimonialsSection: React.FC = () => {
             </button>
           </div>
           
-          {/* Slide indicators */}
           <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2">
             {testimonials.map((_, index) => (
               <button
-                key={index}
+                key={`indicator-${index}`}
                 onClick={() => setCurrentIndex(index)}
                 className={`h-2 w-2 rounded-full transition-colors ${
                   index === currentIndex ? 'bg-primary-600' : 'bg-gray-300'
@@ -154,23 +145,6 @@ const TestimonialsSection: React.FC = () => {
             ))}
           </div>
         </div>
-        
-        {/* <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {[
-            { label: 'Client Retention Rate', value: '95%' },
-            { label: 'Projects Delivered On Time', value: '98%' },
-            { label: 'Clients Who Recommend Us', value: '100%' }
-          ].map((stat, index) => (
-            <div 
-              key={index}
-              className="fade-in rounded-xl bg-white p-6 text-center shadow-sm"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="text-4xl font-bold text-primary-600">{stat.value}</div>
-              <div className="mt-2 text-gray-600">{stat.label}</div>
-            </div>
-          ))}
-        </div> */}
       </div>
     </section>
   );
