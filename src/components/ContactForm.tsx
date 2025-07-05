@@ -57,7 +57,7 @@ const ContactForm: React.FC = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost/API/vortexx.php', {
+      const response = await fetch('https://thevortexx.com/backend/vortexx.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

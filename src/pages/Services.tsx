@@ -4,6 +4,7 @@ import { Code, Server, PenTool, LineChart, HardDrive, Globe, File as Mobile, Sho
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CTASection from '../components/CTASection';
+import { Helmet } from 'react-helmet-async';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -272,246 +273,252 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <div className="pt-20">
-      {/* Hero section */}
-      <section 
-        ref={heroRef}
-        className="bg-primary-900 py-20 text-white overflow-hidden"
-        style={{
-          backgroundImage: 'linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)), url(https://images.pexels.com/photos/251225/pexels-photo-251225.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center h-[60vh]">
-            <h1 ref={heroTitleRef} className="mb-6 text-5xl font-bold text-white pt-[120px]">
-              Our Services
-            </h1>
-            <p ref={heroDescRef} className="mb-8 text-xl text-gray-300">
-              Comprehensive technology solutions tailored to your business needs
-            </p>
+    <>
+      <Helmet>
+        <title>Our Services | Vortexx</title>
+        <meta name="description" content="Discover Vortexx's full range of services: web design, systems development, graphics, digital marketing, infrastructure management, and more in Uganda." />
+      </Helmet>
+      <div className="pt-20">
+        {/* Hero section */}
+        <section 
+          ref={heroRef}
+          className="bg-primary-900 py-20 text-white overflow-hidden"
+          style={{
+            backgroundImage: 'linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)), url(https://images.pexels.com/photos/251225/pexels-photo-251225.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
+          <div className="container">
+            <div className="mx-auto max-w-3xl text-center h-[60vh]">
+              <h1 ref={heroTitleRef} className="mb-6 text-5xl font-bold text-white pt-[120px]">
+                Our Services
+              </h1>
+              <p ref={heroDescRef} className="mb-8 text-xl text-gray-300">
+                Comprehensive technology solutions tailored to your business needs
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
-      
-      {/* Detailed Services Section */}
-      <section className="section bg-gray-50">
-        <div className="container">
-          <div 
-            ref={el => sectionHeadersRef.current[0] = el}
-            className="mb-16 text-center"
-          >
-            <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
-              Our Services
-            </span>
-            <h2 className="mb-4 text-4xl font-bold">Comprehensive Tech Solutions</h2>
-            <p className="mx-auto max-w-2xl text-lg text-gray-600">
-              We provide end-to-end technology services designed to help your business 
-              thrive in today's digital landscape.
-            </p>
-          </div>
-          
-          <div className="mb-20 space-y-20">
-            {services.map((service, index) => (
-              <div 
-                key={service.id}
-                id={service.id}
-                ref={el => serviceCardsRef.current[index] = el}
-                className={`flex flex-col gap-8 ${
-                  index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'
-                }`}
-              >
-                <div className="lg:w-1/2">
-                  <div className="overflow-hidden rounded-xl">
-                    <img 
-                      src={service.image} 
-                      alt={service.title} 
-                      className={`w-full object-cover transition-transform duration-700 hover:scale-105 ${service.id === 'infrastructure' ? 'h-48' : 'h-full'}`}
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-col justify-center lg:w-1/2">
-                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-primary-100 text-primary-600">
-                    {service.icon}
-                  </div>
-                  <h3 className="mb-4 text-3xl font-bold">{service.title}</h3>
-                  <p className="mb-6 text-lg text-gray-600">{service.description}</p>
-                  <ul className="mb-8 space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <span className="mr-2 mt-1 text-primary-600">✓</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to="/contact" className="btn btn-primary self-start">
-                    Get Started
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="rounded-xl bg-primary-900 p-8 text-white md:p-12">
+        </section>
+        
+        {/* Detailed Services Section */}
+        <section className="section bg-gray-50">
+          <div className="container">
             <div 
-              ref={el => sectionHeadersRef.current[1] = el}
-              className="text-center"
+              ref={el => sectionHeadersRef.current[0] = el}
+              className="mb-16 text-center"
             >
-              <h3 className="mb-6 text-3xl font-bold">Additional Capabilities</h3>
-              <p className="mx-auto mb-10 max-w-2xl text-primary-100">
-                Beyond our core services, we offer specialized solutions to address 
-                your specific technology needs.
+              <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
+                Our Services
+              </span>
+              <h2 className="mb-4 text-4xl font-bold">Comprehensive Tech Solutions</h2>
+              <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                We provide end-to-end technology services designed to help your business 
+                thrive in today's digital landscape.
               </p>
             </div>
             
-            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {additionalCapabilities.map((capability, index) => (
+            <div className="mb-20 space-y-20">
+              {services.map((service, index) => (
                 <div 
-                  key={index}
-                  ref={el => additionalCapabilitiesRef.current[index] = el}
-                  className="flex flex-col items-center rounded-lg bg-primary-800/50 p-6 text-center"
+                  key={service.id}
+                  id={service.id}
+                  ref={el => serviceCardsRef.current[index] = el}
+                  className={`flex flex-col gap-8 ${
+                    index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'
+                  }`}
                 >
-                  <div className="mb-4 rounded-full bg-primary-700 p-3 text-primary-300">
-                    {capability.icon}
+                  <div className="lg:w-1/2">
+                    <div className="overflow-hidden rounded-xl">
+                      <img 
+                        src={service.image} 
+                        alt={service.title} 
+                        className={`w-full object-cover transition-transform duration-700 hover:scale-105 ${service.id === 'infrastructure' ? 'h-48' : 'h-full'}`}
+                      />
+                    </div>
                   </div>
-                  <h4 className="text-lg font-semibold text-white">{capability.name}</h4>
+                  <div className="flex flex-col justify-center lg:w-1/2">
+                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-primary-100 text-primary-600">
+                      {service.icon}
+                    </div>
+                    <h3 className="mb-4 text-3xl font-bold">{service.title}</h3>
+                    <p className="mb-6 text-lg text-gray-600">{service.description}</p>
+                    <ul className="mb-8 space-y-3">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <span className="mr-2 mt-1 text-primary-600">✓</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/contact" className="btn btn-primary self-start">
+                      Get Started
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>
             
-            <div className="mt-10 text-center">
-              <Link to="/contact" className="btn bg-white text-primary-900 hover:bg-gray-100">
-                Discuss Your Project 
-              </Link>
+            <div className="rounded-xl bg-primary-900 p-8 text-white md:p-12">
+              <div 
+                ref={el => sectionHeadersRef.current[1] = el}
+                className="text-center"
+              >
+                <h3 className="mb-6 text-3xl font-bold">Additional Capabilities</h3>
+                <p className="mx-auto mb-10 max-w-2xl text-primary-100">
+                  Beyond our core services, we offer specialized solutions to address 
+                  your specific technology needs.
+                </p>
+              </div>
+              
+              <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {additionalCapabilities.map((capability, index) => (
+                  <div 
+                    key={index}
+                    ref={el => additionalCapabilitiesRef.current[index] = el}
+                    className="flex flex-col items-center rounded-lg bg-primary-800/50 p-6 text-center"
+                  >
+                    <div className="mb-4 rounded-full bg-primary-700 p-3 text-primary-300">
+                      {capability.icon}
+                    </div>
+                    <h4 className="text-lg font-semibold text-white">{capability.name}</h4>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-10 text-center">
+                <Link to="/contact" className="btn bg-white text-primary-900 hover:bg-gray-100">
+                  Discuss Your Project 
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      
-      {/* Approach section */}
-      <section className="section">
-        <div className="container">
-          <div 
-            ref={el => sectionHeadersRef.current[2] = el}
-            className="mb-12 text-center"
-          >
-            <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
-              Our Approach
-            </span>
-            <h2 className="mb-4 text-4xl font-bold">How We Work</h2>
-            <p className="mx-auto max-w-2xl text-lg text-gray-600">
-              Our proven process ensures we deliver exceptional results that align 
-              with your business goals and exceed your expectations.
-            </p>
-          </div>
-          
-          <div className="grid gap-8 md:grid-cols-4">
-            {[
-              {
-                number: '01',
-                title: 'Discovery',
-                description: 'We start by understanding your business, goals, and challenges through in-depth consultations.'
-              },
-              {
-                number: '02',
-                title: 'Strategy',
-                description: 'Based on our findings, we develop a tailored strategy and roadmap for your solution.'
-              },
-              {
-                number: '03',
-                title: 'Implementation',
-                description: 'Our team of experts brings the strategy to life with meticulous attention to detail.'
-              },
-              {
-                number: '04',
-                title: 'Optimization',
-                description: 'We continuously refine and improve your solution based on performance data and feedback.'
-              }
-            ].map((step, index) => (
-              <div 
-                key={index} 
-                ref={el => approachStepsRef.current[index] = el}
-                className="card p-6 hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="mb-4 text-4xl font-bold text-primary-200">{step.number}</div>
-                <h3 className="mb-3 text-xl font-bold">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* Technologies section */}
-      <section className="section bg-gray-50">
-        <div className="container">
-          <div 
-            ref={el => sectionHeadersRef.current[3] = el}
-            className="mb-12 text-center"
-          >
-            <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
-              Technologies
-            </span>
-            <h2 className="mb-4 text-4xl font-bold">Our Tech Stack</h2>
-            <p className="mx-auto max-w-2xl text-lg text-gray-600">
-              We leverage cutting-edge technologies to build robust, scalable, and 
-              future-proof solutions for our clients.
-            </p>
-          </div>
-          
-          <div className="grid gap-8 md:grid-cols-3">
-            {[
-              {
-                category: 'Front-End',
-                technologies: ['React', 'Angular', 'Vue.js', 'Next.js', 'TypeScript', 'Tailwind CSS']
-              },
-              {
-                category: 'Back-End',
-                technologies: ['Node.js', 'Python', 'Java', 'PHP', '.NET', 'Ruby on Rails']
-              },
-              {
-                category: 'Mobile',
-                technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Progressive Web Apps']
-              },
-              {
-                category: 'Database',
-                technologies: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Firebase', 'DynamoDB']
-              },
-              {
-                category: 'Cloud',
-                technologies: ['AWS', 'Google Cloud', 'Microsoft Azure', 'Digital Ocean', 'Heroku']
-              },
-              {
-                category: 'DevOps',
-                technologies: ['Docker', 'Kubernetes', 'CI/CD', 'Jenkins', 'GitHub Actions', 'Terraform']
-              }
-            ].map((category, index) => (
-              <div 
-                key={index} 
-                ref={el => techStackRef.current[index] = el}
-                className="card p-6 hover:shadow-lg transition-shadow duration-300"
-              >
-                <h3 className="mb-4 text-xl font-bold">{category.category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.technologies.map((tech, techIndex) => (
-                    <span 
-                      key={techIndex}
-                      className="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-800"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+        </section>
+        
+        {/* Approach section */}
+        <section className="section">
+          <div className="container">
+            <div 
+              ref={el => sectionHeadersRef.current[2] = el}
+              className="mb-12 text-center"
+            >
+              <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
+                Our Approach
+              </span>
+              <h2 className="mb-4 text-4xl font-bold">How We Work</h2>
+              <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                Our proven process ensures we deliver exceptional results that align 
+                with your business goals and exceed your expectations.
+              </p>
+            </div>
+            
+            <div className="grid gap-8 md:grid-cols-4">
+              {[
+                {
+                  number: '01',
+                  title: 'Discovery',
+                  description: 'We start by understanding your business, goals, and challenges through in-depth consultations.'
+                },
+                {
+                  number: '02',
+                  title: 'Strategy',
+                  description: 'Based on our findings, we develop a tailored strategy and roadmap for your solution.'
+                },
+                {
+                  number: '03',
+                  title: 'Implementation',
+                  description: 'Our team of experts brings the strategy to life with meticulous attention to detail.'
+                },
+                {
+                  number: '04',
+                  title: 'Optimization',
+                  description: 'We continuously refine and improve your solution based on performance data and feedback.'
+                }
+              ].map((step, index) => (
+                <div 
+                  key={index} 
+                  ref={el => approachStepsRef.current[index] = el}
+                  className="card p-6 hover:shadow-lg transition-shadow duration-300"
+                >
+                  <div className="mb-4 text-4xl font-bold text-primary-200">{step.number}</div>
+                  <h3 className="mb-3 text-xl font-bold">{step.title}</h3>
+                  <p className="text-gray-600">{step.description}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-      
-      {/* CTA section */}
-      <CTASection />
-    </div>
+        </section>
+        
+        {/* Technologies section */}
+        <section className="section bg-gray-50">
+          <div className="container">
+            <div 
+              ref={el => sectionHeadersRef.current[3] = el}
+              className="mb-12 text-center"
+            >
+              <span className="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800">
+                Technologies
+              </span>
+              <h2 className="mb-4 text-4xl font-bold">Our Tech Stack</h2>
+              <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                We leverage cutting-edge technologies to build robust, scalable, and 
+                future-proof solutions for our clients.
+              </p>
+            </div>
+            
+            <div className="grid gap-8 md:grid-cols-3">
+              {[
+                {
+                  category: 'Front-End',
+                  technologies: ['React', 'Angular', 'Vue.js', 'Next.js', 'TypeScript', 'Tailwind CSS']
+                },
+                {
+                  category: 'Back-End',
+                  technologies: ['Node.js', 'Python', 'Java', 'PHP', '.NET', 'Ruby on Rails']
+                },
+                {
+                  category: 'Mobile',
+                  technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Progressive Web Apps']
+                },
+                {
+                  category: 'Database',
+                  technologies: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Firebase', 'DynamoDB']
+                },
+                {
+                  category: 'Cloud',
+                  technologies: ['AWS', 'Google Cloud', 'Microsoft Azure', 'Digital Ocean', 'Heroku']
+                },
+                {
+                  category: 'DevOps',
+                  technologies: ['Docker', 'Kubernetes', 'CI/CD', 'Jenkins', 'GitHub Actions', 'Terraform']
+                }
+              ].map((category, index) => (
+                <div 
+                  key={index} 
+                  ref={el => techStackRef.current[index] = el}
+                  className="card p-6 hover:shadow-lg transition-shadow duration-300"
+                >
+                  <h3 className="mb-4 text-xl font-bold">{category.category}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {category.technologies.map((tech, techIndex) => (
+                      <span 
+                        key={techIndex}
+                        className="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-800"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        
+        {/* CTA section */}
+        <CTASection />
+      </div>
+    </>
   );
 };
 
