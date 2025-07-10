@@ -251,56 +251,63 @@ const About: React.FC = () => {
       name: "Kamugisha Ali",
       position: "CEO & Founder",
       bio: "Kamugisha is a visionary leader with a passion for technology and innovation. He is the founder of VORTEXX and has been instrumental in the company's growth and success.",
-      icon: User,
+      image: "img/Ali.jpg",
       color: "from-blue-500 to-purple-600",
     },
     {
       name: "Asiima Crisen",
       position: "CTO",
       bio: "Asiima is the technical mastermind behind VORTEXX, overseeing all development projects and ensuring the highest standards of quality and innovation.",
-      icon: User,
+      image: "img/Crisen.jpg",
       color: "from-green-500 to-teal-600",
     },
     {
       name: "Kategere Ian Victor",
       position: "COO",
       bio: "Kategere is responsible for the day-to-day operations of VORTEXX, ensuring that projects run smoothly and efficiently while maintaining high client satisfaction.",
-      icon: User,
+      image: "img/Ian.jpg",
       color: "from-orange-500 to-red-600",
     },
     {
-      name: "Nassuuna Gloria Christine",
+      name: "Nassuuna Gloria",
       position: "CFO",
       bio: "Gloria manages the financial health of VORTEXX, overseeing budgeting, forecasting, and financial planning to ensure sustainable growth.",
-      icon: User,
+      image: "img/Glowie.jpg",
       color: "from-purple-500 to-pink-600",
     },
     {
       name: "Mungufeni Marvin",
       position: "Mobiliser & Infrastructure Manager",
       bio: "Marvin is the backbone of our infrastructure, ensuring that our systems are robust, secure, and scalable to meet the demands of our clients.",
-      icon: User,
+      image: "img/marvin.jpg",
       color: "from-indigo-500 to-blue-600",
     },
     {
       name: "Tukamuhembwa Newton",
       position: "Secretary & Developer",
       bio: "Newton is a versatile developer who plays a key role in both our software development and administrative functions, ensuring seamless communication and project execution.",
-      icon: User,
+      image: "img/Newton.jpg",
       color: "from-emerald-500 to-green-600",
     },
     {
       name: "Sekimpi Ibrahim",
       position: "Marketer & Developer",
       bio: "Ibrahim combines his skills in marketing and development to create effective digital strategies that enhance our clients' online presence.",
-      icon: User,
+      image: "img/ibra.jpg",
       color: "from-rose-500 to-pink-600",
     },
     {
       name: "Nakibinge Collins",
       position: "Developer",
       bio: "Collins is a talented developer specializing in front-end technologies, creating beautiful and user-friendly interfaces.",
-      icon: User,
+      image: "img/collin.jpg",
+      color: "from-cyan-500 to-blue-600",
+    },
+    {
+      name: "Mugabi Given Peter",
+      position: "Assistant Infrastructure Manager",
+      bio: "Given is the backbone of our infrastructure, ensuring that our systems are robust, secure, and scalable to meet the demands of our clients.",
+      image: "img/given.jpg",
       color: "from-cyan-500 to-blue-600",
     },
   ];
@@ -667,7 +674,6 @@ const About: React.FC = () => {
                 className="team-swiper relative"
               >
                 {teamMembers.map((member, index) => {
-                  const IconComponent = member.icon;
                   return (
                     <SwiperSlide key={index}>
                       <div className="team-card group relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 overflow-hidden h-96">
@@ -676,8 +682,12 @@ const About: React.FC = () => {
                         
                         {/* Circular icon container */}
                         <div className="relative z-10 mb-6 flex justify-center">
-                          <div className={`team-icon relative w-28 h-28 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-3`}>
-                            <IconComponent className="w-14 h-14 text-white" />
+                          <div className={`team-icon relative w-28 h-28 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-3 overflow-hidden`}>
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="w-full h-full object-cover rounded-full"
+                            />
                             {/* Glowing effect */}
                             <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${member.color} opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500`}></div>
                           </div>
